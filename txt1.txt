@@ -1,4 +1,2 @@
 this is a text
-this is a workshop text
-this is a github text
-this is mu club
+
