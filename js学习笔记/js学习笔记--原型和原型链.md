@@ -111,7 +111,7 @@ Foo.prototype.club = 'MU';
 console.log(f1.contry);   //undefined
 console.log(Foo.club);    //undefined
 ```
-![image](https://note.youdao.com/yws/api/personal/file/WEB67eec76294b30dc4ab2191f77136915c?method=getImage&cstk=in-GROCw)
+![image](images/8.png)
 
 - 如图Foo.contry添加的是Foo对象上的属性，f1被赋予的作用域（this）并没有该属性，所以f1.contry为undefined。
 - 原型链的形成真正是靠__proto__ 而非prototype,当JS引擎执行对象的方法时，先查找对象本身是否存在该方法，如果不存在，会在原型链上查找，但不会查找自身的prototype。所以Foo.club为undefined，Foo，也是Function（）的一个实例，它只能往__proto__即（Function.prototype）上寻找。
