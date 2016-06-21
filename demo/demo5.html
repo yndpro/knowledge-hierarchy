@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	 <div id="div1" class="class2">我
+        <p id="p1" class="class1">
+            我是第一个P</p>
+        <p id="p2" class="class1">
+            我是第二个P</p>
+        <img src="" alt="11">
+    </div>
+
+    <script>
+    	window.onload = function(argument) {
+
+
+    		function Person(name,age,gender){
+    			this.name = name;
+    			this.age = age;
+    		}
+
+    		Person.prototype.getFristName = function(){
+    			console.log(this.firstName);
+    		}
+
+    		function Children(lastName,age,job){
+    			this.lastName = lastName;
+    			this.age = age;
+    			this.job = job;
+
+    		}
+    		
+    		Children.prototype = new Person();
+
+    		Children.prototype.getLastName = function(){
+    			console.log(this.lastName);
+    		}
+
+
+
+
+    		var c1 = new Children('mu','22','doctor'),
+    			c2 = new Children('real','23','student');
+
+    		c1.getFristName();
+    		c1.getLastName();
+    		c2.getLastName();
+
+    		
+    	}
+    </script>
+</body>
+</html>
