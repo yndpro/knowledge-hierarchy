@@ -14,21 +14,22 @@
     </div>
 
     <script>
+  
+
     	window.onload = function(argument) {
 
 
     		function Person(name,age,gender){
     			this.name = name;
     			this.age = age;
+                this.gender = gender;
     		}
 
     		Person.prototype.getFristName = function(){
     			console.log(this.firstName);
     		}
 
-    		function Children(lastName,age,job){
-    			this.lastName = lastName;
-    			this.age = age;
+    		function Children(job){
     			this.job = job;
 
     		}
