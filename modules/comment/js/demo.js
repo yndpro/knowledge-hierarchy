@@ -39,7 +39,7 @@
             countPraise -= 1;
             totalPraise.innerHTML = countPraise==0 ? '' : countPraise+'人都觉得很赞';
             totalPraise.setAttribute('total',countPraise);
-            el.innerHTML = "赞";
+            el.innerHTML = "赞"; 
         }
     } 
 
@@ -56,6 +56,9 @@
                 break
 
         }
+
+
+        
 
     }
 
