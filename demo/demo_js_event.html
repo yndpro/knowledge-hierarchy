@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="nodeA" onclick="alert(this);">nodeAText</div> 
+
+    <div id="nodeB" onclick="fnHandleB(this);">nodeBText</div>
+    <script>
+        function fnHandleB(nodeB) {
+            // body...
+            alert(this);
+            alert(nodeB);
+        }
+    </script>
+    
+    <div id="nodeC">nodeCText</div>
+    <script>
+        var nodeC = document.getElementById('nodeC');
+        nodeC.onclick = function(){
+            console.log(this.id + '1');
+        }
+        nodeC.onclick = function(){
+            console.log(this.id + '2'); 
+        }
+    </script>
+
+    <div id="nodeD">nodeDText</div>
+    <script>
+        /*var nodeD = document.getElementById('nodeD');
+        nodeD.attachEvent('onclick',fnHandleD1);
+        nodeD.attachEvent('onclick',fnHandleD1);
+        function fnHandleD1(){
+            alert('1');
+        }*/
+        
+    </script>
+
+    <div id="nodeE">nodeEText</div>
+    <script>
+        var nodeE = document.getElementById('nodeE');
+        nodeE.addEventListener('click',fnHandleE,false);
+        nodeE.addEventListener('click',fnHandleE,true);
+        function fnHandleE(){
+            alert(this);
+        }
+        
+    </script>
+
+
+
+    <div id="out1" style="width:400px; height:400px; background:#CDC9C9;position:relative;">
+        <div id="out2" style="height:200; background:#0000ff;top:100px;position:relative;">
+            <div id="out3" style="height:100px; background:#FFB90F;top:50px;position:relative;"></div> 
+        </div>
+    </div>
+    <script>
+        window.onload = function(){
+            var out3 = document.getElementById('out3');
+            var out2 = document.getElementById('out2');
+            var out1 = document.getElementById('out1');
+
+            // out3.addEventListener('click',function(){alert("target3")});
+
+            // out1.addEventListener('click',function(){alert("Bubble1")},false);
+            // out2.addEventListener('click',function(){alert("Bubble2")},false);
+
+            // out1.addEventListener('click',function(){alert("Capture1")},true);
+            // out2.addEventListener('click',function(){alert("Capture2")},true);
+
+            
+
+            out3.addEventListener('click',function(event){
+                event.stopPropagation();
+                alert("target3");
+                
+            });
+
+            out1.addEventListener('click',function(event){alert("Bubble1");},false);
+
+            out1.addEventListener('click',function(event){alert("Capture1");},true);
+
+
+
+
+        
+        }
+    </script>
+</body>
+</html>
