@@ -36,15 +36,33 @@
     	// console.log(age2);
 
 
-    	function setName(obj){
-    		obj.name = "Bogerba";
-    		obj = new Object();
-    		obj.name = "Ibra";
-    	};
+    	// function setName(obj){
+    	// 	obj.name = "Bogerba";
+    	// 	obj = new Object();
+    	// 	obj.name = "Ibra";
+    	// };
 
-    	var person = new Object();
-    	setName(person);
-    	console.log(person.name);
+    	// var person = new Object();
+    	// setName(person);
+    	// console.log(person.name);
+
+    	var color = "blue";
+
+    	function changeColor(){
+
+    		var anotherColor = "red";
+
+    		function swapColor(){
+				
+				var tempColor = anotherColor;
+				anotherColor = color;
+				color = tempColor;
+
+    		}
+    		swapColor();
+    	}
+
+    	changeColor();
 
 
 
