@@ -7,66 +7,15 @@
 <body>
     <script>
     (function(){
-    	
-    	// var person = new Object();
-    	// person.name = "Bogerba";
-    	// console.log(person.name);
 
-    	// var person = "person"
-    	// person.name = "Bogerba";
-    	// console.log(person.name);
+        var color = "blue";
 
-    	// var person1 = 3;
-    	// var person2 = person1;
-    	// person1 = 5;
-    	// console.log(person2);
+        function getColor(){
+            var color = "red";
+            return color;
+        }
 
-    	// var person1 = new Object();
-    	// var person2 = person1;
-    	// person1.width = 10;
-    	// console.log(person2.width);
-
-    	// function addTen(num){
-    	// 	num += 10;
-    	// 	return num;
-    	// }
-    	// var age = 20;
-    	// var age2 = addTen(age);
-    	// console.log(age);    
-    	// console.log(age2);
-
-
-    	// function setName(obj){
-    	// 	obj.name = "Bogerba";
-    	// 	obj = new Object();
-    	// 	obj.name = "Ibra";
-    	// };
-
-    	// var person = new Object();
-    	// setName(person);
-    	// console.log(person.name);
-
-    	var color = "blue";
-
-    	function changeColor(){
-
-    		var anotherColor = "red";
-
-    		function swapColor(){
-				
-				var tempColor = anotherColor;
-				anotherColor = color;
-				color = tempColor;
-
-    		}
-    		swapColor();
-    	}
-
-    	changeColor();
-
-
-
-
+        console.log(getColor());
 
     })();
         
