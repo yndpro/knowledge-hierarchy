@@ -63,10 +63,8 @@ arr.shift()           //3
 arr                   //[3, 2, 7, 8]
 ```
 push()和pop()可以模拟栈操作；push()和shift()可以模拟队列操作；unshift()和pop()可以模拟相反方向队列操作。
-
+### 数组操作
 .concat()合并数组，是在原来的的基础上创建一个数组副本，返回这个数组副本。
-
-
 ```
 var arr1 = ['Adrian','22','fe'];
 var arr2 = arr1.concat('mu1','mu2');
@@ -168,10 +166,6 @@ arr                         //["35", "54", "2", "4"]
 
 indexof返回数组项下标,searchElement是要查找的数组项，fromIndex是指从什么位置向后查找（为负值则从数组最后开始计数位置，仍然向后查找）。索引值大于数组长度返回-1；
 ```
-arr.indexOf(searchElement[, fromIndex = 0])
-```
-
-```
 var arr = [0,1,2,3,4,5,6,5,4,3,2,1,0];
 arr.indexOf(3)     //3
 arr.indexOf(7)     //-1
@@ -180,16 +174,23 @@ arr.indexOf(5,6)   //7
 arr.indexOf(2,-2)  //-1
 arr.indexOf(2,-3)  //10
 ```
-
 lastIndexOf()和indexOf相反，从后向前查找。
-
 ```
 arr.lastIndexOf(2)      //10
 arr.lastIndexOf(5,7)    //7
 arr.lastIndexOf(5,5)    //5
 arr.lastIndexOf(2, -1)  //10
 ```
+在比较第一个参数和数组中的每一项时，用的是===严格等。
+```
+var person = {'name':'aa'};
 
+arr1 = [{'name':'aa'}];     
+arr2 = [person];
+
+console.log(arr1.indexOf(person));   //-1  引用类型的对象的严格等是同一个引用*
+console.log(arr2.indexOf(person));   //0
+```
 ### 遍历求和
 
 
