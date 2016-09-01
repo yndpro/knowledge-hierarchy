@@ -8,14 +8,107 @@
     <script>
     (function(){
 
-        var color = "blue";
+       
 
-        function getColor(){
-            var color = "red";
-            return color;
+        var dynamicArray = [
+          { "name": "John Doe", "age": 29 }, 
+          { "name": "Anna Smith", "age": 24 }, 
+          { "name": "Peter Jones", "age": 39 }
+        ];
+
+
+
+
+       
+        function propSort(property){
+            var sortOrder = 1;
+            if(property[0] === "-"){
+                sortOrder = -1;
+                property = property.substr(1);
+            }
+
+            return function(a,b){
+                var result = a[property] < b[property] ? -1 : a[property] > b[property] ? 1 : 0;
+                return result*sortOrder;
+            }
         }
 
-        console.log(getColor());
+        
+        var peoples = [
+            {
+                name: 'Agraj',
+                gender:'M',
+                age: 29,
+                address:
+                {
+                    city: 'Delhi',
+                    pincode: '110064'
+                }
+            },
+            {
+                name: 'Mark',
+                gender:'M',
+                age: 35,
+                address:
+                {
+                    city: 'West Bengal',
+                    pincode: '220013'
+                }
+            },
+            {
+                name: 'Lance',
+                gender:'M',
+                age: 39,
+                address:
+                {
+                    city: 'Chandigarh',
+                    pincode: '201201'
+                }
+            },
+            {
+                name: 'Vikas',
+                gender:'M',
+                age: 21,
+                address:
+                {
+                    city: 'Noida',
+                    pincode: '201301'
+                }
+            },
+            {
+                name: 'Kanika',
+                gender:'F',
+                age: 21,
+                address:
+                {
+                    city: 'Noida',
+                    pincode: '201301'
+                }
+            }
+        ];
+
+
+        var sum = 0;
+        var arrPeoplesId = peoples.map(function(item,index,array){
+            item.id = index + 1
+
+            sum += item.id
+            return [item.id,item.name];
+        })
+
+        peoples.filter(function(user,index){
+            return user.gender === "M";
+        })
+
+        console.log(peoples.map(function(item,index,array){
+            item.id = index + 1
+
+            sum += item.id
+            return [item.id,item.name];
+        }));
+
+
+        
 
     })();
         
