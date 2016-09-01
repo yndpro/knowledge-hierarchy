@@ -19,7 +19,6 @@ color[2] = 'yellow'
 color                  //["blue", "red", "yellow"]
 ```
 ### 数组length
-
 ```
 var arr = ['a','b','c'];
 arr.length;            // 3
@@ -28,29 +27,37 @@ arr                    //["a", "b"]
 arr.length = 9
 arr                    //["a", "b", undefined × 7]
 ```
-### 数组操作
-
+### 数组转换
+toString(),toLocaleString()以逗号分隔字符串的形式返回字符串。而join(),可以使用不同分隔符来构建返回字符串，只接受一个参数即分隔符。
+```
+var arr = ["a",1,"bbc",2];
+arr.toString();       //"a,1,bbc,2"
+arr.toLocaleString(); //"a,1,bbc,2"
+arr.join("|")         //"a|1|bbc|2"
+```
+如果数组中有项是null或undefined,则上述方法返回结果以空字符表示。
+```
+var arr = ["a",1,"bbc",undefined,null,2];
+arr.join("|")         //"a|1|bbc|||2"
+```
+### 栈和队列方法 
 push()向数组末尾添加一个或多个元素，返回数组新长度。
-
 ```
 var arr = []
 arr.push(7,8)          //2
 arr.push([4,5])        //3
 ```
 pop()删除数组最后一个元素，返回被删元素的值。
-
 ```
 arr.pop()             //[4, 5]
 arr                   //[7, 8]
 ```
 unshift()向数组的开头添加一个或多个元素，返回数组新长度。在开头添加，后面的元素都会移位，性能不好，可借助reverse();
-
 ```
 arr.unshift(3,3,2)    //5
 arr                   //[3, 3, 2, 7, 8]
 ```
 shift()删除数组的第一个元素，并返回被删除的值。
-
 ```
 arr.shift()           //3
 arr                   //[3, 2, 7, 8]
@@ -97,16 +104,15 @@ arr                            //[1, 2, 3, "a", "b", "c"]
 ```
 
 ### 数组排列
-sort()对数组进行原地排列，并返回这个数组。默认是升序。没有参数是用toString()将其转化为字符串用Unicode比较。
+sort()对数组进行原地排列，并返回这个数组。没有参数时调用每个项的toString()将其转化为字符串用Unicode比较。默认是升序。
 
 ```
-var arr = ['hello','jame','Jack','dog'];
-arr                   //["Jack", "dog", "hello", "jame"]
+var arr = [2,1,5,23,56,2];
+arr                   //[1, 2, 2, 23, 5, 56]
 ```
-数字数字字符串排序。sort()接受一个函数，两个相邻数组传递函数进行比较，
-返回值小于0，a排在b前面；返回值等于0，a和b位置不变；返回值大于0，a排在b后面；
+sort()接受一个比较函数，比较函数的两个参数即两个相邻项进行比较，记住一句话：比较函数要让第一个项排在第二个项之前则要返回负数。
 
-升序：
+数值数组升序：
 ```
 var arr = ['1', '10', '22','5'];
 function compare(a, b) {
@@ -114,7 +120,7 @@ function compare(a, b) {
 }
 arr.sort(compare)     //["1", "5", "10", "22"]
 ```
-随机：
+数值数组随机：
 
 ```
 var randomArray = [9,0,23,8,3,5];
@@ -126,8 +132,6 @@ function randomFun(a,b){
 randomArray.sort(randomFun)  //[9, 0, 5, 23, 3, 8]
 ```
 对象数组排列：
-
-
 ```
 var dynamicArray = [
   { "name": "John Doe", "age": 29 }, 
@@ -136,7 +140,7 @@ var dynamicArray = [
 ];
 
 function dynamicSort(property){
-	var sortOrder = 1;           /*1升序*/
+	var sortOrder = 1;           /*1升序，-1降序*/
 	if(property[0] === "-"){
 		sortOrder = -1;
 		property = property.substr(1);
