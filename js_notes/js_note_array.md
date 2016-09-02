@@ -248,24 +248,36 @@ var peoples = [
     }
 ];
 ```
-map()方法返回一个由原数组中的每个元素调用一个指定函数callbackfn后的返回值组成的新数组。
-
+forEach()为数组中的每一项运行给定的函数，没有返回值。
+every()为数组中的每一项运行给定的函数，如果函数对每一项都返回true,则返回true。
 ```
-var userDb = peoples.map(function(user,index){
-	user.id = index + 1;
-	return [user.name,user.id];
+var isEveryArr = peoples.every(function(item,index,array){
+    return item.age > 20;
 })
+console.log(isEveryArr);    //true
+```
+some()为数组中的每一项运行给定的函数，如果函数对任意一项返回true,则返回true。
+```
+var isSomeArr = peoples.some(function(item,index,array){
+    return item.age > 30;
+})
+console.log(isSomeArr);    //true
+```
+map()为数组中的每一项运行给定的函数,返回每次调用返回值组成的新数组。
+```
+var mapArr = peoples.map(function(item,index,array){
+    return [item.name,item.age];
+})
+console.log(mapArr);
 ```
 ![image](http://note.youdao.com/favicon.ico)
-
-filter()方法为每个元素调用一次callbackfn，为返回true的元素创建一个新数组。
+filter()为数组中的每一项运行给定的函数,返回每次调用返回值为true的项组成的新数组。
 ```
 var guys = peoples.filter(function(user,index){
 	return user.gender === "M"
 })
 ```
 ![image](http://note.youdao.com/favicon.ico)
-
 reduce()方法为每个元素调用一次callbackfn（常用作累加求和）。
 ```
 array.reduce(callbackfn,[initialValue])
@@ -275,8 +287,6 @@ function callbackfn(preValue,curValue,index,array){}
 - curValue: 数组中当前被处理的数组项
 - index: 当前数组项在数组中的索引值
 - array: 调用 reduce()方法的数组
-
-
 ```
 var arr = [0,1,2,3,4];
 
