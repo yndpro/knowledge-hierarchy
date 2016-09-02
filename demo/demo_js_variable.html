@@ -88,26 +88,62 @@
         ];
 
 
-        var sum = 0;
-        var arrPeoplesId = peoples.map(function(item,index,array){
-            item.id = index + 1
+        // function compare(a,b){
+        //     return a['age'] - b['age'];
+        // }
+        // var resultSortArr = peoples.sort(compare);
+        // console.log(peoples);
 
-            sum += item.id
-            return [item.id,item.name];
+        // var sum = 0;
+        // var sumArr = peoples.reduce(function(a,b,index){
+        //     if(index === 1){
+        //         sum = a['age']
+        //     };
+        //     sum += b['age'];
+        //     return sum;
+        // })
+        // console.log(sumArr);
+
+        // var max = peoples.reduce(function(a,b){
+        //     return a['age'] > b['age'] ? a : b;
+        // });
+
+        // console.log(max);
+
+        // function unique(arr){
+        //     var tempArr = [];
+        //     var propArr = [];
+        //     for (var i = 0; i < arr.length; i++) {
+        //         if(propArr.indexOf(arr[i].address.city) === -1){
+        //             propArr.push(arr[i].address.city);
+        //             tempArr.push(arr[i]);
+        //         } 
+        //     }
+        //     return tempArr;
+        // }
+        // var uniqueArr = unique(peoples);
+
+        // console.log(uniqueArr);
+
+
+
+        var filtArr = peoples.filter(function(item,index,array){
+            return item.age > 22;
         })
-
-        peoples.filter(function(user,index){
-            return user.gender === "M";
-        })
-
-        console.log(peoples.map(function(item,index,array){
-            item.id = index + 1
-
-            sum += item.id
-            return [item.id,item.name];
-        }));
+        console.log(filtArr);
 
 
+
+
+
+
+
+
+
+
+
+
+        
         
 
     })();
