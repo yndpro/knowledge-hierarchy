@@ -272,8 +272,6 @@ console.log(mapArr);
 ```
 ![image](http://note.youdao.com/favicon.ico)
 
-### 归并方法
-
 filter()为数组中的每一项运行给定的函数,返回每次调用返回值为true的项组成的新数组。
 ```
 var guys = peoples.filter(function(user,index){
@@ -281,6 +279,8 @@ var guys = peoples.filter(function(user,index){
 })
 ```
 ![image](http://note.youdao.com/favicon.ico)
+
+### 归并方法
 
 reduce()方法为每个元素调用一次callbackfn（常用作累加求和）。
 ```
