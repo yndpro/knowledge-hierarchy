@@ -64,7 +64,7 @@ arr                   //[3, 2, 7, 8]
 ```
 push()和pop()可以模拟栈操作；push()和shift()可以模拟队列操作；unshift()和pop()可以模拟相反方向队列操作。
 ### 数组操作
-.concat()合并数组，是在原来的的基础上创建一个数组副本，返回这个数组副本。
+concat()合并数组，是在原来的的基础上创建一个数组副本，返回这个数组副本。
 ```
 var arr1 = ['Adrian','22','fe'];
 var arr2 = arr1.concat('mu1','mu2');
@@ -191,7 +191,7 @@ arr2 = [person];
 console.log(arr1.indexOf(person));   //-1  引用类型的对象的严格等是同一个引用*
 console.log(arr2.indexOf(person));   //0
 ```
-### 遍历求和
+### 迭代方法
 
 
 ```
@@ -248,7 +248,7 @@ var peoples = [
     }
 ];
 ```
-forEach()为数组中的每一项运行给定的函数，没有返回值。
+forEach()为数组中的每一项运行给定的函数，没有返回值。和for差不多，这里就不再陈述了。
 every()为数组中的每一项运行给定的函数，如果函数对每一项都返回true,则返回true。
 ```
 var isEveryArr = peoples.every(function(item,index,array){
@@ -271,6 +271,9 @@ var mapArr = peoples.map(function(item,index,array){
 console.log(mapArr);
 ```
 ![image](http://note.youdao.com/favicon.ico)
+
+### 归并方法
+
 filter()为数组中的每一项运行给定的函数,返回每次调用返回值为true的项组成的新数组。
 ```
 var guys = peoples.filter(function(user,index){
@@ -278,6 +281,7 @@ var guys = peoples.filter(function(user,index){
 })
 ```
 ![image](http://note.youdao.com/favicon.ico)
+
 reduce()方法为每个元素调用一次callbackfn（常用作累加求和）。
 ```
 array.reduce(callbackfn,[initialValue])
