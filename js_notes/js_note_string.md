@@ -72,6 +72,7 @@ myStr.lastIndexOf('you')   //14
 ```
 var myStr = "I,Love,you,Do,you,love,me";
 myStr.charAt(8)            //"o"
+myStr[8]                   //"o"     
 ```
 #### 字符串连接
 ```
