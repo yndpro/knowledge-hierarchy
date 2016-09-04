@@ -1,5 +1,29 @@
 
 
+#### 基本包装类型
+每当往内存中读取一个基本类型值得时候，后台就会自动创建一个对应的基本包装类型的对象，而这个对象的生命周期只存在于一行代码的执行瞬间，
+```
+var str = 'hello world';
+str.length;                       //11   
+```
+- 创建String类型的一个实例；
+- 在实例上调用指定的方法；
+- 销毁这个实例；
+```
+var str = new String('hello world');
+str.length;
+str = null;
+```
+
+String类型是字符串的对象包装类型，字符串是基本类型值，
+```
+str = 'hello world';
+typeof str;         //"string"
+str = new String('hello world');
+typeof str;         //"object"
+```
+
+
 
 #### 字符串转换
 ```
