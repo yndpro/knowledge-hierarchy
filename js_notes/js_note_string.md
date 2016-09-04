@@ -1,7 +1,7 @@
 
 
-#### 基本包装类型
-每当往内存中读取一个基本类型值得时候，后台就会自动创建一个对应的基本包装类型的对象，而这个对象的生命周期只存在于一行代码的执行瞬间，
+### 基本包装类型(适用于String,Number,Boolean)
+因为基本类型值不是对象，无法调用方法来操作。每当往内存中读取一个基本类型值得时候，后台就会自动创建一个对应的基本包装类型的对象，而这个对象的生命周期只存在于一行代码的执行瞬间。
 ```
 var str = 'hello world';
 str.length;                       //11   
@@ -14,7 +14,28 @@ var str = new String('hello world');
 str.length;
 str = null;
 ```
+第二行创建的String对象在执行第三行时已经被销毁了，第三行又创建自己的String对象。
+```
+var person = "person"
+person.name = "Bogerba";
+console.log(person.name);    //undefined
+```
+不建议显示地调用String构造函数来创建String类型是实例，因为调用typeof会返回"object",易混淆。
+```
+var str = new String('hello world');
+str.a = "name";
+typeof str                              //"object"
+str instanceof String                   //true
+str.a                                   //"name"
+```
+Object构造函数也会像 工厂方法一样，根据传入的值返回相应基本包装类型的实例。
+```
+var str = new Object('hello world');
+typeof str                              //"object"
+```
 
+
+###String
 String类型是字符串的对象包装类型，字符串是基本类型值，
 ```
 str = 'hello world';
@@ -22,9 +43,6 @@ typeof str;         //"string"
 str = new String('hello world');
 typeof str;         //"object"
 ```
-
-
-
 #### 字符串转换
 ```
 var num = 19
