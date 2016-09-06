@@ -36,12 +36,14 @@ typeof str                              //"object"
 
 
 ###String
-String类型是字符串的对象包装类型，字符串是基本类型值，
+String类型是字符串的对象包装类型，字符串是基本类型值。对象继承的valueOf(),toString(),toLocalString(),都返回对象所表示的基本字符串值。
 ```
 str = 'hello world';
 typeof str;         //"string"
 str = new String('hello world');
 typeof str;         //"object"
+var strs = str.valueOf();
+strs;               //"hello world"
 ```
 #### 字符串转换
 ```
@@ -117,19 +119,33 @@ match()是在字符串上调用，如果参数regExp没有全局标志g，则mat
 - 属性index：匹配文本在字符串中的起始索引位置。
 - 属性input：整个字符串对象(stringObject)。
 
-exec()函数是在正则上调用，传递字符串的参数。对于上面两个方法，仅仅是把正则和字符串换了个位置，匹配结果都是一样的。
+exec()函数是在正则上调用，传递字符串的参数。对于上面两个方法，仅仅是把正则和字符串换了个位置，匹配结果都是返回一样的一个数组（这个数组后面带两个参数，因为js的数组实际上是一个对象，所以能往上面添加参数，见ps）。
 ```
 var myStr = "I,love,you,Do,you,love,me";
-var pattern = /love/;
-var result = myStr.match(pattern);           //["love"]
-var result = pattern.exec(myStr);           //["love"]
-result.index                                 //2
-result.input                                 //"I,love,you,Do,you,love,me"
+var pattern = /.ove/;
+myStr.match(pattern)                //["love", index: 2, input: "I,love,you,Do,you,love,me"]
+pattern.exec(myStr)                 //["love", index: 2, input: "I,love,you,Do,you,love,me"]
 ```
-如果参数regExp设有全局标志g,返回的数组不再有index和input属性，其中的数组元素就是所有匹配到的子字符串
-
+加上全局匹配,匹配多次,exec()和match()返回的数组就不同。
 ```
-result2 = myStr.match(/love/g)               //["love", "love"]
+var myStr = "I,love,you,Do,you,love,me";
+var pattern = /(.)ove/g;
+var result1 = myStr.match(pattern);
+var result2 = myStr.match(pattern); 
+var result3 = pattern.exec(myStr);
+var result4 = pattern.exec(myStr);
+result1                            //["love", "love"] 
+result2                            //["love", "love"] 
+result3                            //["love", "l", index: 2, input: "I,love,you,Do,you,love,me"]
+result4                            //["love", "l", index: 18, input: "I,love,you,Do,you,love,me"]
+```
+ps：
+```
+var arrayObj = ["1","22"];
+arrayObj["0"] = "hahaha1"; 
+arrayObj["111"] = "hahaha2"; 
+arrayObj["222"] = "hahaha3";
+console.log(arrayObj);
 ```
 .search仅返回查到的匹配的下标，如果匹配失败则返回-1.
 
