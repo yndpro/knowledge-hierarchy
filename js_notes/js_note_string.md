@@ -51,13 +51,6 @@ var num = 19
 num.toString()    //"19"
 "" +num           //"19"
 ```
-#### 字符串分割
-split()的第二个参数，表示返回的字符串数组的最大长度。
-```
-myStr = "I,Love,You,Do,you,love,me";
-myStr.split(",")       //["I", "Love", "You", "Do", "you", "love", "me"]
-myStr.split(",", 3)    //["I", "Love", "You"]
-```
 #### 查询子字符串
 indexOf()，它从字符串的开头开始查找，找到返回对应坐标，找不到返回-1。
 lastIndexOf()，它从字符串的末尾开始查找，找到返回对应坐标，找不到返回-1。
@@ -104,14 +97,6 @@ myStr.toLowerCase()           //"i,love,you,do,you,love,me"
 myStr.toUpperCase()           //"I,LOVE,YOU,DO,YOU,LOVE,ME"
 ```
 
-#### 字符串替换
-默认只替换第一次查找到的，想要全局替换，需要置上正则全局标识
-```
-var myStr = "I,love,you,Do,you,love,me";
-myStr.replace('love','hate');    //"I,hate,you,Do,you,love,me"
-myStr.replace(/love/g,'hate');   //"I,hate,you,Do,you,hate,me"
-```
-
 #### 字符串匹配
 
 match()是在字符串上调用，如果参数regExp没有全局标志g，则match()函数只查找第一个匹配，返回包含查找结果的数组，该数组对象包含如下成员
@@ -145,13 +130,52 @@ var arrayObj = ["1","22"];
 arrayObj["0"] = "hahaha1"; 
 arrayObj["111"] = "hahaha2"; 
 arrayObj["222"] = "hahaha3";
-console.log(arrayObj);
+console.log(arrayObj);             //["hahaha1", "22", 111: "hahaha2", 222: "hahaha3"]
 ```
-.search仅返回查到的匹配的下标，如果匹配失败则返回-1.
-
+search()仅返回字符串中第一个匹配项的索引，如果匹配失败则返回-1.
 ```
 myStr.search(pattern)                       //2
 ```
+replace()提供替换字符串的操作
+```
+var myStr = "I,love,you,Do,you,love,me,dove";
+var pattern = /(.)ov(.)/g;
 
+myStr.replace(pattern,"like");              //"I,like,you,Do,you,like,me,like"
+```
+如果第二个参数是字符串,还可以使用一些特殊的字符序列
 
+字符序列 | 替换文本
+---|---
+$& | 匹配整个模式的子字符串     与RegExp.lastMatch的值相同
+$n | 匹配第n个捕获组中的字符串  
+$` | 匹配字符串之前的字符串     与RegExp.leftContext的值相同
+$' | 匹配字符串之后的字符串     与RegExp.rightContext的值相同
 
+```
+myStr.replace(pattern,"like[$2]");           //"I,like[e],you,Do,you,like[e],me,like[d]"
+myStr.replace(pattern,"like[$`]");          //I,like[I,],you,Do,you,like[I,love,you,Do,you,],me,like[I,love,you,Do,you,love,me,]
+```
+如果第二个参数是函数，会向函数传递3个参数，实现更加精细的替换操作。
+```
+function excapeHtml(str){
+    return str.replace(/[<>"]/g,function(match,pos,oriStr){
+        switch(match){
+            case "<":
+                return "&lt;";
+            case ">":
+                return "&gt;";
+            case "\"":
+                return "&quot;";
+        }
+    })
+}
+excapeHtml("<p class=\"greeting\">hello world</p>");   //&lt;p class=&quot;greeting&quot;&gt;hello world&lt;/p&gt;
+```
+split()常用于字符串分割，第二个参数，表示返回的字符串数组的最大长度。
+```
+myStr = "I,Love,You,Do\\you,love,me";
+myStr.split(",")       //["I", "Love", "You", "Do\you", "love", "me"]
+myStr.split(",", 3)    //["I", "Love", "You"]
+myStr.split(/[,\\]/)   //["I", "Love", "You", "Do", "you", "love", "me"]
+```
