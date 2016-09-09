@@ -22,11 +22,12 @@ console.log(person.name);    //undefined
 ```
 不建议显示地调用String构造函数来创建String类型是实例，因为调用typeof会返回"object",易混淆。
 ```
-var str = new String('hello world');
-str.a = "name";
-typeof str                              //"object"
-str instanceof String                   //true
-str.a                                   //"name"
+var str = 'aaa';             
+str instanceof String          //false
+typeof str                     //"string"
+str = new String('aaa');       //String {0: "a", 1: "a", 2: "a", length: 3, [[PrimitiveValue]]: "aaa"}
+str instanceof String          //true
+typeof str                     //"object"
 ```
 Object构造函数也会像 工厂方法一样，根据传入的值返回相应基本包装类型的实例。
 ```
