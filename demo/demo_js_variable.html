@@ -197,6 +197,16 @@
 
         // console.log(excapeHtml("<p class=\"greeting\">hello world</p>"));
 
+        var str = "\'aaaaa\',\"bbbbb\"",
+            arr,
+            pattern = new RegExp("(\'|\")(.*?)(/1)","g");
+
+        console.log(pattern.exec(str));
+
+        // for(var i = 0;i < 2;i++){
+        //     arr = pattern.exec(str);
+        // };
+        
         
 
 
