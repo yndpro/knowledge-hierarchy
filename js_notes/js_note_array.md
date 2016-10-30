@@ -19,7 +19,6 @@ color[2] = 'yellow'
 color                  //["blue", "red", "yellow"]
 ```
 ### 数组length
-
 ```
 var arr = ['a','b','c'];
 arr.length;            // 3
@@ -28,38 +27,44 @@ arr                    //["a", "b"]
 arr.length = 9
 arr                    //["a", "b", undefined × 7]
 ```
-### 数组操作
-
+### 数组转换
+toString(),toLocaleString()以逗号分隔字符串的形式返回字符串。而join(),可以使用不同分隔符来构建返回字符串，只接受一个参数即分隔符。
+```
+var arr = ["a",1,"bbc",2];
+arr.toString();       //"a,1,bbc,2"
+arr.toLocaleString(); //"a,1,bbc,2"
+arr.join("|")         //"a|1|bbc|2"
+```
+如果数组中有项是null或undefined,则上述方法返回结果以空字符表示。
+```
+var arr = ["a",1,"bbc",undefined,null,2];
+arr.join("|")         //"a|1|bbc|||2"
+```
+### 栈和队列方法 
 push()向数组末尾添加一个或多个元素，返回数组新长度。
-
 ```
 var arr = []
 arr.push(7,8)          //2
 arr.push([4,5])        //3
 ```
 pop()删除数组最后一个元素，返回被删元素的值。
-
 ```
 arr.pop()             //[4, 5]
 arr                   //[7, 8]
 ```
 unshift()向数组的开头添加一个或多个元素，返回数组新长度。在开头添加，后面的元素都会移位，性能不好，可借助reverse();
-
 ```
 arr.unshift(3,3,2)    //5
 arr                   //[3, 3, 2, 7, 8]
 ```
 shift()删除数组的第一个元素，并返回被删除的值。
-
 ```
 arr.shift()           //3
 arr                   //[3, 2, 7, 8]
 ```
 push()和pop()可以模拟栈操作；push()和shift()可以模拟队列操作；unshift()和pop()可以模拟相反方向队列操作。
-
-.concat()合并数组，是在原来的的基础上创建一个数组副本，返回这个数组副本。
-
-
+### 数组操作
+concat()合并数组，是在原来的的基础上创建一个数组副本，返回这个数组副本。
 ```
 var arr1 = ['Adrian','22','fe'];
 var arr2 = arr1.concat('mu1','mu2');
@@ -97,16 +102,15 @@ arr                            //[1, 2, 3, "a", "b", "c"]
 ```
 
 ### 数组排列
-sort()对数组进行原地排列，并返回这个数组。默认是升序。没有参数是用toString()将其转化为字符串用Unicode比较。
+sort()对数组进行原地排列，并返回这个数组。没有参数时调用每个项的toString()将其转化为字符串用Unicode比较。默认是升序。
 
 ```
-var arr = ['hello','jame','Jack','dog'];
-arr                   //["Jack", "dog", "hello", "jame"]
+var arr = [2,1,5,23,56,2];
+arr                   //[1, 2, 2, 23, 5, 56]
 ```
-数字数字字符串排序。sort()接受一个函数，两个相邻数组传递函数进行比较，
-返回值小于0，a排在b前面；返回值等于0，a和b位置不变；返回值大于0，a排在b后面；
+sort()接受一个比较函数，比较函数的两个参数即两个相邻项进行比较，记住一句话：比较函数要让第一个项排在第二个项之前则要返回负数。
 
-升序：
+数值数组升序：
 ```
 var arr = ['1', '10', '22','5'];
 function compare(a, b) {
@@ -114,7 +118,7 @@ function compare(a, b) {
 }
 arr.sort(compare)     //["1", "5", "10", "22"]
 ```
-随机：
+数值数组随机：
 
 ```
 var randomArray = [9,0,23,8,3,5];
@@ -126,8 +130,6 @@ function randomFun(a,b){
 randomArray.sort(randomFun)  //[9, 0, 5, 23, 3, 8]
 ```
 对象数组排列：
-
-
 ```
 var dynamicArray = [
   { "name": "John Doe", "age": 29 }, 
@@ -136,7 +138,7 @@ var dynamicArray = [
 ];
 
 function dynamicSort(property){
-	var sortOrder = 1;           /*1升序*/
+	var sortOrder = 1;           /*1升序，-1降序*/
 	if(property[0] === "-"){
 		sortOrder = -1;
 		property = property.substr(1);
@@ -164,10 +166,6 @@ arr                         //["35", "54", "2", "4"]
 
 indexof返回数组项下标,searchElement是要查找的数组项，fromIndex是指从什么位置向后查找（为负值则从数组最后开始计数位置，仍然向后查找）。索引值大于数组长度返回-1；
 ```
-arr.indexOf(searchElement[, fromIndex = 0])
-```
-
-```
 var arr = [0,1,2,3,4,5,6,5,4,3,2,1,0];
 arr.indexOf(3)     //3
 arr.indexOf(7)     //-1
@@ -176,17 +174,24 @@ arr.indexOf(5,6)   //7
 arr.indexOf(2,-2)  //-1
 arr.indexOf(2,-3)  //10
 ```
-
 lastIndexOf()和indexOf相反，从后向前查找。
-
 ```
 arr.lastIndexOf(2)      //10
 arr.lastIndexOf(5,7)    //7
 arr.lastIndexOf(5,5)    //5
 arr.lastIndexOf(2, -1)  //10
 ```
+在比较第一个参数和数组中的每一项时，用的是===严格等。
+```
+var person = {'name':'aa'};
 
-### 遍历求和
+arr1 = [{'name':'aa'}];     
+arr2 = [person];
+
+console.log(arr1.indexOf(person));   //-1  引用类型的对象的严格等是同一个引用*
+console.log(arr2.indexOf(person));   //0
+```
+### 迭代方法
 
 
 ```
@@ -243,23 +248,39 @@ var peoples = [
     }
 ];
 ```
-map()方法返回一个由原数组中的每个元素调用一个指定函数callbackfn后的返回值组成的新数组。
-
+forEach()为数组中的每一项运行给定的函数，没有返回值。和for差不多，这里就不再陈述了。
+every()为数组中的每一项运行给定的函数，如果函数对每一项都返回true,则返回true。
 ```
-var userDb = peoples.map(function(user,index){
-	user.id = index + 1;
-	return [user.name,user.id];
+var isEveryArr = peoples.every(function(item,index,array){
+    return item.age > 20;
 })
+console.log(isEveryArr);    //true
+```
+some()为数组中的每一项运行给定的函数，如果函数对任意一项返回true,则返回true。
+```
+var isSomeArr = peoples.some(function(item,index,array){
+    return item.age > 30;
+})
+console.log(isSomeArr);    //true
+```
+map()为数组中的每一项运行给定的函数,返回每次调用返回值组成的新数组。
+```
+var mapArr = peoples.map(function(item,index,array){
+    return [item.name,item.age];
+})
+console.log(mapArr);
 ```
 ![image](http://note.youdao.com/favicon.ico)
 
-filter()方法为每个元素调用一次callbackfn，为返回true的元素创建一个新数组。
+filter()为数组中的每一项运行给定的函数,返回每次调用返回值为true的项组成的新数组。
 ```
 var guys = peoples.filter(function(user,index){
 	return user.gender === "M"
 })
 ```
 ![image](http://note.youdao.com/favicon.ico)
+
+### 归并方法
 
 reduce()方法为每个元素调用一次callbackfn（常用作累加求和）。
 ```
@@ -270,8 +291,6 @@ function callbackfn(preValue,curValue,index,array){}
 - curValue: 数组中当前被处理的数组项
 - index: 当前数组项在数组中的索引值
 - array: 调用 reduce()方法的数组
-
-
 ```
 var arr = [0,1,2,3,4];
 

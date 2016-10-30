@@ -7,66 +7,234 @@
 <body>
     <script>
     (function(){
-    	
-    	// var person = new Object();
-    	// person.name = "Bogerba";
-    	// console.log(person.name);
 
-    	// var person = "person"
-    	// person.name = "Bogerba";
-    	// console.log(person.name);
+       
 
-    	// var person1 = 3;
-    	// var person2 = person1;
-    	// person1 = 5;
-    	// console.log(person2);
-
-    	// var person1 = new Object();
-    	// var person2 = person1;
-    	// person1.width = 10;
-    	// console.log(person2.width);
-
-    	// function addTen(num){
-    	// 	num += 10;
-    	// 	return num;
-    	// }
-    	// var age = 20;
-    	// var age2 = addTen(age);
-    	// console.log(age);    
-    	// console.log(age2);
-
-
-    	// function setName(obj){
-    	// 	obj.name = "Bogerba";
-    	// 	obj = new Object();
-    	// 	obj.name = "Ibra";
-    	// };
-
-    	// var person = new Object();
-    	// setName(person);
-    	// console.log(person.name);
-
-    	var color = "blue";
-
-    	function changeColor(){
-
-    		var anotherColor = "red";
-
-    		function swapColor(){
-				
-				var tempColor = anotherColor;
-				anotherColor = color;
-				color = tempColor;
-
-    		}
-    		swapColor();
-    	}
-
-    	changeColor();
+        var dynamicArray = [
+          { "name": "John Doe", "age": 29 }, 
+          { "name": "Anna Smith", "age": 24 }, 
+          { "name": "Peter Jones", "age": 39 }
+        ];
 
 
 
 
+       
+        function propSort(property){
+            var sortOrder = 1;
+            if(property[0] === "-"){
+                sortOrder = -1;
+                property = property.substr(1);
+            }
+
+            return function(a,b){
+                var result = a[property] < b[property] ? -1 : a[property] > b[property] ? 1 : 0;
+                return result*sortOrder;
+            }
+        }
+
+        
+        var peoples = [
+            {
+                name: 'Agraj',
+                gender:'M',
+                age: 29,
+                address:
+                {
+                    city: 'Delhi',
+                    pincode: '110064'
+                }
+            },
+            {
+                name: 'Mark',
+                gender:'M',
+                age: 35,
+                address:
+                {
+                    city: 'West Bengal',
+                    pincode: '220013'
+                }
+            },
+            {
+                name: 'Lance',
+                gender:'M',
+                age: 39,
+                address:
+                {
+                    city: 'Chandigarh',
+                    pincode: '201201'
+                }
+            },
+            {
+                name: 'Vikas',
+                gender:'M',
+                age: 21,
+                address:
+                {
+                    city: 'Noida',
+                    pincode: '201301'
+                }
+            },
+            {
+                name: 'Kanika',
+                gender:'F',
+                age: 21,
+                address:
+                {
+                    city: 'Noida',
+                    pincode: '201301'
+                }
+            }
+        ];
+
+
+        // function compare(a,b){
+        //     return a['age'] - b['age'];
+        // }
+        // var resultSortArr = peoples.sort(compare);
+        // console.log(peoples);
+
+        // var sum = 0;
+        // var sumArr = peoples.reduce(function(a,b,index){
+        //     if(index === 1){
+        //         sum = a['age']
+        //     };
+        //     sum += b['age'];
+        //     return sum;
+        // })
+        // console.log(sumArr);
+
+        // var max = peoples.reduce(function(a,b){
+        //     return a['age'] > b['age'] ? a : b;
+        // });
+
+        // console.log(max);
+
+        // function unique(arr){
+        //     var tempArr = [];
+        //     var propArr = [];
+        //     for (var i = 0; i < arr.length; i++) {
+        //         if(propArr.indexOf(arr[i].address.city) === -1){
+        //             propArr.push(arr[i].address.city);
+        //             tempArr.push(arr[i]);
+        //         } 
+        //     }
+        //     return tempArr;
+        // }
+        // var uniqueArr = unique(peoples);
+
+        // console.log(uniqueArr);
+
+
+
+        // var filtArr = peoples.filter(function(item,index,array){
+        //     return item.age > 22;
+        // })
+        // console.log(filtArr);
+        // var str = "this has been a short summerbhott ";
+        // var pattern = /(..)o(.)t/g;
+        
+        // if(pattern.test(str)){
+        //     var b = pattern.test(str);
+        //     console.log(RegExp.$1);
+        //     console.log(RegExp.$2);
+        // }
+
+
+        // str = new String('hello world');
+        // console.log(typeof str === "object");
+
+
+
+
+        // var str = " cat, bat, sat, fat";
+        // var pattern = /.at/g;
+
+        // var arr1 = str.match(pattern);
+        // var arr1_2 = str.match(pattern);
+        // var arr2 = pattern.exec(str);
+        // var arr2_2 = pattern.exec(str);
+
+        // console.log(arr1);
+        // console.log(arr1_2);
+        // console.log(arr2[1]);
+        // console.log(arr2_2);
+
+        
+
+
+
+
+
+        var myStr = "I,love,you,Do,you,love,me,dovd";
+        var pattern = /(.)ov(.)/g;
+
+        console.log(myStr.search(pattern));    
+
+        // result = myStr.replace(pattern,"like[$`]");
+        // console.log(result);
+        // var result1 = myStr.match(pattern);
+        // var result2 = myStr.match(pattern); 
+        // var result3 = pattern.exec(myStr);
+        // var result4 = pattern.exec(myStr);
+        // console.log(result1);
+        // console.log(result2);
+        // console.log(result3);
+        // console.log(result4);
+
+        // function excapeHtml(str){
+        //     return str.replace(/[<>"]/g,function(match,pos,oriStr){
+        //         switch(match){
+        //             case "<":
+        //                 return "&lt;";
+        //             case ">":
+        //                 return "&gt;";
+        //             case "\"":
+        //                 return "&quot;";
+        //         }
+        //     })
+        // }
+
+        // console.log(excapeHtml("<p class=\"greeting\">hello world</p>"));
+
+        var str = "\'aaaaa\',\"bbbbb\"",
+            arr,
+            pattern = new RegExp("(\'|\")(.*?)(/1)","g");
+
+        console.log(pattern.exec(str));
+
+        // for(var i = 0;i < 2;i++){
+        //     arr = pattern.exec(str);
+        // };
+        
+        
+
+
+        
+
+        
+        
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        
 
     })();
         
