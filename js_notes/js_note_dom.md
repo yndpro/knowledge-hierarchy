@@ -13,7 +13,7 @@
     </body>
 </html>
 ```
-![image](http://note.youdao.com/favicon.ico)
+![image](https://github.com/adrianhk/knowledge-hierarchy/blob/jsnote/js_notes/images/dom1.JPG)
 
 ### Node类型
 DOM1定义了一个Node接口。
@@ -54,7 +54,7 @@ if(form1.nodeType == 1){
 
 常用的还有nextSibling,previousSiling,firstChild,parentNode,nodeValue等属性。
 
-![image](http://note.youdao.com/favicon.ico)
+![image](https://github.com/adrianhk/knowledge-hierarchy/blob/jsnote/js_notes/images/dom2.JPG)
 #### 方法
 常用的有appendChild(),insertBefore(),replaceChild(),removeChild(),hasChildNodes()等（注：并不是所有节点都有子节点，所以有些节点调用会报错）。
 
@@ -283,12 +283,12 @@ node.style.border = "1px solid red";
 
 
 偏移量
-![image](http://note.youdao.com/favicon.ico)
+![image](https://github.com/adrianhk/knowledge-hierarchy/blob/jsnote/js_notes/images/dom3.JPG)
 
 
 
 客户区大小，例子是确定浏览器视口大小
-![image](http://note.youdao.com/favicon.ico)
+![image](https://github.com/adrianhk/knowledge-hierarchy/blob/jsnote/js_notes/images/dom4.JPG)
 
 
 ```
@@ -305,7 +305,7 @@ function getViewPort(){
 
 
 滚动大小，例子是确定文档的总高度
-![image](http://note.youdao.com/favicon.ico)
+![image](https://github.com/adrianhk/knowledge-hierarchy/blob/jsnote/js_notes/images/dom5.JPG)
 
 ```
 function getDocSize(){
