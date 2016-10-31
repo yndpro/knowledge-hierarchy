@@ -371,8 +371,11 @@ getBoundingClientRect()返回一个矩形对象，相对于视口的位置。
 </html>
 ```
 
+![image](https://github.com/adrianhk/knowledge-hierarchy/blob/jsnote/js_notes/images/dom6.PNG)
 
 图展示了对以document 为根节点的DOM树进行深度优先遍历的先后顺序。
+
+![image](https://github.com/adrianhk/knowledge-hierarchy/blob/jsnote/js_notes/images/dom7.PNG)
 
 可以通过createNodeIterator()方法的filter 参数来指定自定义的NodeFilter 对象，或者
 指定一个功能类似节点过滤器（node filter）的函数。每个NodeFilter 对象只有一个方法，即accept-
