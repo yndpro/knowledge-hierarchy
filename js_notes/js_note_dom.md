@@ -307,11 +307,13 @@ getStyleSheet(link)      //[CSSStyleSheet]
 
 
 偏移量
+
 ![image](https://github.com/adrianhk/knowledge-hierarchy/blob/master/js_notes/images/dom3.JPG)
 
 
 
 客户区大小，例子是确定浏览器视口大小
+
 ![image](https://github.com/adrianhk/knowledge-hierarchy/blob/master/js_notes/images/dom4.JPG)
 
 
@@ -371,11 +373,11 @@ getBoundingClientRect()返回一个矩形对象，相对于视口的位置。
 </html>
 ```
 
-![image](https://github.com/adrianhk/knowledge-hierarchy/blob/master/js_notes/images/dom6.PNG)
+![image](https://github.com/adrianhk/knowledge-hierarchy/blob/master/js_notes/images/dom6.png)
 
 图展示了对以document 为根节点的DOM树进行深度优先遍历的先后顺序。
 
-![image](https://github.com/adrianhk/knowledge-hierarchy/blob/master/js_notes/images/dom7.PNG)
+![image](https://github.com/adrianhk/knowledge-hierarchy/blob/master/js_notes/images/dom7.png)
 
 可以通过createNodeIterator()方法的filter 参数来指定自定义的NodeFilter 对象，或者
 指定一个功能类似节点过滤器（node filter）的函数。每个NodeFilter 对象只有一个方法，即accept-
