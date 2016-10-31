@@ -272,11 +272,35 @@ ul.innerHTML = itemsHtml;
 # DOM2和DOM3
 ### style
 
-HTML 元素在JavaScript 中都有一个对应的style 属性，对象实例不包含与外部样式表或嵌入样式表经层叠而来的样式。属性转换成驼峰大小写形式。
-
+HTML 元素在JavaScript 中都有一个对应的style 属性，返回的 style对象（CSSStyleDeclaration类型）实例不包含与外部样式表或嵌入样式表经层叠而来的样式。属性转换成驼峰大小写形式。“DOM2级样式”规范还为style 对象定义了一些属性和方法，比如cssText，应用多项变化最快捷的方式，因为可以一次性地应用所有变化。
+注：height样式定义在样式表里。
 ```
 node.style.backgroundColor = "#000";
 node.style.border = "1px solid red";
+node.style.height;    //""
+node.style.cssText;   //width: 300px; border: 1px solid red; background-color: rgb(0, 0, 0);   
+```
+“DOM2 级样式”增强了document.defaultView，提供getComputedStyle()方法，也是返回一个CSSStyleDeclaration类型的实例，其中包含当前元素的所有计算的样式。IE 可以用currentStyle 代替。
+```
+var computedStyle = document.defaultView.getComputedStyle(node,null);
+computedStyle.height  //"200px"
+```
+
+操作样式表，CSSStyleSheet 类型表示的是样式表，包括通过link元素包含的样式表和在style元素中定义
+的样式表。有读者可能记得，这两个元素本身分别是由HTMLLinkElement 和HTMLStyleElement 类型
+表示的。但是，CSSStyleSheet 类型相对更加通用一些，它只表示样式表，而不管这些样式表在HTML
+中是如何定义的。此外，上述两个针对元素的类型允许修改HTML 特性，但CSSStyleSheet 对象则是一
+套只读的接口（有一个属性例外）。CSSStyleSheet 继承自StyleSheet，后者可以作为一个基础接口来定义非CSS 样式表。从
+StyleSheet 接口继承而来的属性如下。通过document.styleSheets获得CSSStyleSheet 对象的集合，也可以直接通过link或style元素取得CSSStyleSheet 对象。
+
+```
+document.styleSheets[0]   //[CSSStyleSheet]
+
+var link = document.getElementsByTagName("link")[0];
+function getStyleSheet(elementLink){
+	return elementLink.sheet || elementLink.styleSheet;
+}
+getStyleSheet(link)      //[CSSStyleSheet]
 ```
 
 ### 元素大小
@@ -330,7 +354,76 @@ function scrollToTop(element){
 getBoundingClientRect()返回一个矩形对象，相对于视口的位置。
 
 
+### 遍历
+
+“DOM2 级遍历和范围”模块定义了两个用于辅助完成顺序遍历DOM 结构的类型：NodeIterator
+和TreeWalker。这两个类型能够基于给定的起点对DOM 结构执行深度优先（depth-first）的遍历操作。
+
+```
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Example</title>
+	</head>
+	<body>
+		<p><b>Hello</b> world!</p>
+	</body>
+</html>
+```
 
 
+图展示了对以document 为根节点的DOM树进行深度优先遍历的先后顺序。
 
+可以通过createNodeIterator()方法的filter 参数来指定自定义的NodeFilter 对象，或者
+指定一个功能类似节点过滤器（node filter）的函数。每个NodeFilter 对象只有一个方法，即accept-
+Node()；如果应该访问给定的节点，该方法返回NodeFilter.FILTER_ACCEPT，如果不应该访问给
+定的节点，该方法返回NodeFilter.FILTER_SKIP。由于NodeFilter 是一个抽象的类型，因此不能
+直接创建它的实例。在必要时，只要创建一个包含acceptNode()方法的对象，然后将这个对象传入
+createNodeIterator()中即可。
+```
+<div id="div1">
+	<p><b>Hello</b> world!</p>
+	<ul>
+		<li>List item 1</li>
+		<li>List item 2</li>
+		<li>List item 3</li>
+	</ul>
+</div>
+```
+
+```
+var div = document.getElementById("div1");
+
+/*定义过滤器*/
+var filter = function(node){
+	return node.tagName.toLowerCase() == "li" ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP
+}
+
+/*定义迭代器*/
+var iterator = document.createNodeIterator(div,NodeFilter.SHOW_ELEMENT,filter,false);
+
+/*使用迭代器迭代*/
+var curNode = iterator.nextNode();
+while(curNode != null){
+	console.log(curNode.tagName);
+	curNode = iterator.nextNode();
+}
+```
+迭代器只会返回li元素。
+
+TreeWalker和NodeIterator类似，TreeWalker 真正强大的地方在于能够在DOM结构中沿任何方向移动。
+```
+/*定义迭代器*/
+var walker = document.createTreeWalker(div, NodeFilter.SHOW_ELEMENT, null, false);
+
+walker.firstChild(); //转到<p>
+walker.nextSibling(); //转到<ul>
+
+/*使用迭代器迭代*/
+var curNode = walker.firstChild();   //转到第一个<li>
+while(curNode != null){
+	console.log(curNode.tagName);
+	curNode = walker.nextSibling();
+}
+```
 
