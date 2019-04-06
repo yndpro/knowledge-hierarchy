@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 50px;
+            height: 50px;
+            background: #000;
+            -ms-transform:translate3d(20px,20px,20px);
+            transform:translate3d(20px,20px,20px);
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script src="../lib/jquery.min.1.7.2.js"></script>
+    <script src="../lib/mock-min.js"></script>
+    <script src="mData.js"></script>
+</body>
+<script>
+    function request(url, param, successFun, errorFun) {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            param: param,
+            async: true,    
+            success: successFun,
+            error: errorFun
+        });
+    }
+
+    
+
+    // var promise = new Promise(function (resolve, reject) {
+    //     if (/* 异步操作成功 */) {
+    //         resolve(data);
+    //     } else {
+    //         /* 异步操作失败 */
+    //         reject(error);
+    //     }
+    // });
+
+    // var promise1 = new Promise(function (resolve, reject) {
+    //         request('https://api.github.com/search/repositories?q=javascript&sort=stars', '',resolve, reject);
+    //     });
+    //     console.log(promise1);
+
+    // promise1.then(function(data) {
+    //     console.log('请求成功啦, 这是返回的数据:', data);
+    // },function(error) {
+    //     console.log('sorry, 请求失败了, 这是失败信息:', error);
+    // });
+
+
+
+    // function sendRequest(url, param) {
+    //     return new Promise(function (resolve, reject) { //加一成封装 将resolve reject 暴露出去
+    //         request(url, param, resolve, reject);
+    //     });
+    // }
+    // sendRequest('test.html', '').then(function(data) {
+    //     // data为promise传出的值
+    //     console.log('请求成功啦, 这是返回的数据:', data);
+    // }, function(error) {
+    //     console.log('sorry, 请求失败了, 这是失败信息:', error);
+    // });
+    
+
+    new Promise(function(resolve,reject){
+        console.log(Date.now() + "start timeout 1");
+        setTimeout(resolve,3000);   //一些异步操作，promise 状态改变 执行resolve
+        console.log(Date.now() + "line1");
+    }).then(function(data){  //这两个函数都接受Promise对象传出的值作为参数
+        console.log(Date.now() + "timeout 1 callback");
+
+        return new Promise(function(resolve,reject){
+            console.log(Date.now() + "start timeout 2");
+            setTimeout(resolve,3000);    //1.异步调用成功下的回调,执行resolve -> 2.promise状态改变onfill（外部函数onfill传入）  
+            console.log(Date.now() + "line2");
+        })
+
+        //核心 then 能返回该 onfill 执行后的返回的新的promise   回调执行后有返回该回调里的promise  
+    }).then(function(data){ //2.对上一个异步调用成功后的结果做处理的
+        console.log(Date.now() + "timeout 2 callback");
+
+        return new Promise(function(resolve,reject){
+            console.log(Date.now() + "start timeout 3");
+            resolve('3');
+            console.log(Date.now() + "line3");
+        })
+
+    }).then(function(data){
+        console.log(Date.now() + "timeout 3 callback");
+
+        console.log(data);
+    })
+
+    //把callback甩到外头来 通过promise调用
+    
+
+
+</script>
+</html>

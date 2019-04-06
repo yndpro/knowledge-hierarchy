@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*一般做法*/
+    /* 
+    async(callback) 
+    */
+
+    function normall(){
+
+        function runAsync1(callback1,callback2){
+            setTimeout(function(){
+                console.timeEnd("异步任务1")
+                callback1(callback2);
+            },2000);
+        }
+
+
+        function runAsync2(callback2){
+            setTimeout(function(){
+                console.timeEnd("异步任务2")
+                callback2("异步任务2数据");
+            },1000);
+        }
+
+        
+        function callback2(data){
+            console.log(data);
+        }
+
+        console.time("异步任务1")
+        console.time("异步任务2")
+        runAsync1(runAsync2,callback2);
+    }
+    
+
+    /*normall*/
+    function runNormall(){
+
+        console.time("异步任务1")
+        console.time("异步任务2")
+
+        function async1(callback){
+            setTimeout(function(){
+                console.timeEnd("异步任务1")
+                callback("异步任务1数据")
+            },1000);
+        }
+
+        function async2(callback){
+            setTimeout(function(){
+                console.timeEnd("异步任务2")
+                callback("异步任务2数据")
+            },1000);
+        }
+
+        async1(function(data){
+            console.log(data)
+            async2(function(data){
+                console.log(data)
+            })
+        })
+
+    }
+
+
+
+
+    /*promise*/
+    function runPromise(){
+
+        console.time("异步任务1")
+        console.time("异步任务2")
+        console.time("异步任务3")
+
+        function async1(status){
+            return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    console.timeEnd("异步任务1")
+                    if(status == 1){
+                        resolve("异步任务1数据")
+                    }else{
+                        reject("异步任务1 error")
+                    }
+                },1000);
+            })
+        }
+
+        function async2(status){
+            return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    console.timeEnd("异步任务2")
+                    if(status == 1){
+                        resolve("异步任务2数据")
+                    }else{
+                        reject("异步任务2 error")
+                    }
+                },2000);
+            })
+        }
+
+        function async3(status){
+            return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    console.timeEnd("异步任务3")
+                    if(status == 1){
+                        resolve("异步任务3数据")
+                    }else{
+                        reject("异步任务3 error")
+                    }
+                },3000);
+            })
+        }
+
+        async1(1)
+        .then(
+            function(data){
+                console.log(data)
+                return async2(1)
+            },
+            function(data){
+                console.log(data)
+            }
+        )
+        .then(
+            function(data){
+                console.log(data)
+                return async3(1)
+            },
+            function(data){
+                console.log(data)
+            }
+        )
+        .then(
+            function(data){
+                console.log(data)
+            },
+            function(data){
+                console.log(data)
+            }
+        )
+        
+        // Promise
+        //     .all([async1(1),async2(1),async3(1)])
+        //     .then(function(data){
+        //         console.log(data);
+        //     })
+
+
+    }
+    //runPromise()
+    
+
+
+    /*Generator*/
+    function runGenerator(){
+        
+        console.time("异步任务1")
+        console.time("异步任务2")
+        console.time("异步任务3")
+
+        function async1(callback){
+            setTimeout(function(){
+                console.timeEnd("异步任务1")
+                callback("异步任务1数据")
+            },1000);
+        }
+
+        function async2(callback){
+            setTimeout(function(){
+                console.timeEnd("异步任务2")
+                callback("异步任务2数据")
+            },2000);
+        }
+
+        function async3(callback){
+            setTimeout(function(){
+                console.timeEnd("异步任务3")
+                callback("异步任务3数据")
+            },3000);
+        }
+
+        var compute = function* (){
+
+            yield async1(function(data){
+                console.log(data)
+                generator.next();
+            })
+            yield async2(function(data){
+                console.log(data)
+                generator.next();
+            })
+            yield async3(function(data){
+                console.log(data)
+            })
+        }
+
+        var generator = compute()
+        generator.next();
+    }
+
+
+
+
+
+
+    /*Generator*/
+    function runGenerator2(){
+        
+        console.time("异步任务1")
+        console.time("异步任务2")
+        console.time("异步任务3")
+
+        function async1(){
+            return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    console.timeEnd("异步任务1")
+                    if(1){
+                        resolve("异步任务1数据")
+                    }else{
+                        reject("异步任务1 error")
+                    }
+                },1000);
+            })
+        }
+
+        function async2(){
+            return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    console.timeEnd("异步任务2")
+                    if(1){
+                        resolve("异步任务2数据")
+                    }else{
+                        reject("异步任务2 error")
+                    }
+                },2000);
+            })
+        }
+
+        function async3(){
+            return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    console.timeEnd("异步任务3")
+                    if(1){
+                        resolve("异步任务3数据")
+                    }else{
+                        reject("异步任务3 error")
+                    }
+                },3000);
+            })
+        }
+
+        /*异步 将一个任务分两段  
+            1.请求文件 (其他任务) 2.处理文件    
+            async 就是一个异步
+            更多看阮一峰generator*/
+        var compute = function* (){
+
+            var data1 = yield async1() /*想象抛出曲线*/
+            console.log(data1);      /*利用返回的promise, resolve里调用next 把resolve回调抛到yield左侧，模拟出同步的效果*/
+            var data2 = yield async2()
+            console.log(data2);
+            var data3 = yield async3()
+            console.log(data3);
+        }
+
+        var generator = compute()
+
+
+        generator.next().value
+        .then(function(data){
+            var g2 = generator.next(data);
+            return g2.value
+        })
+        .then(function(data){
+            var g3 = generator.next(data);
+            return g3.value  /*拿到async3 的promise*/
+        })
+        .then(function(data){  /*触发resolve 执行回调 传数据给next（下一个g函数片段）*/
+            generator.next(data);
+        })
+
+    
+    }
+    
+
+
+
+    
+    function runAsync(){
+
+        console.time("异步任务1")
+        console.time("异步任务2")
+        console.time("异步任务3")
+
+        function async1(){
+            return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    console.timeEnd("异步任务1")
+                    if(1){
+                        resolve("异步任务1数据")
+                    }else{
+                        reject("异步任务1 error")
+                    }
+                },1000);
+            })
+        }
+
+        function async2(){
+            return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    console.timeEnd("异步任务2")
+                    if(1){
+                        resolve("异步任务2数据")
+                    }else{
+                        reject("异步任务2 error")
+                    }
+                },2000);
+            })
+        }
+
+        function async3(){
+            return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    console.timeEnd("异步任务3")
+                    if(1){
+                        resolve("异步任务3数据")
+                    }else{
+                        reject("异步任务3 error")
+                    }
+                },3000);
+            })
+        }
+        
+        
+       
+        async function asyncTask() {   /*async是Generator的语法糖  传参*/
+            
+            var data1 = await async1();
+            console.log(data1); 
+            var data2 = await async2();
+            console.log(data2);
+            var data3 = await async3();
+            console.log(data3);
+
+            return data2
+        }
+
+    
+
+        asyncTask()
+
+    }
+    runAsync();
+</script>
+</html>
