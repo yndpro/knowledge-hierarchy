@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import {BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom';
 
 
 /*Basic Routing*/
@@ -52,6 +52,10 @@ function Topic({match}) {
     return <h2>{`request is ${match.params.id}`}</h2>;                {/*响应体*/}
 }
 
+function Topic1() {
+    return <h2>Topic1</h2>;
+}
+
 function Topics({match}) {
     return (
         <div>
@@ -60,8 +64,18 @@ function Topics({match}) {
                 <li><Link to={`${match.path}/1`}>Topic1</Link></li>
                 <li><Link to={`${match.path}/2`}>Topic2</Link></li>  {/*router包裹请求体*/}
             </ul>
-            <Route path={match.path} exact render={() => <div>please select a topic</div>}/>   {/*router包裹响应体*/}
-            <Route path={`${match.path}/:id`} component={Topic}/>
+            {/*<Route path={match.path} exact render={() => <div>please select a topic</div>}/>   /!*router包裹响应体*!/*/}
+            {/*<Route path={`${match.path}/1`} component={Topic1}/>*/}
+            {/*<Route path={`${match.path}/:id`} component={Topic}/>*/}
+
+
+            {/*Switch is unique in that it renders a route exclusively.
+            In contrast, every Route that matches the location renders inclusively*/}
+            <Switch>
+                <Route path={match.path} exact render={() => <div>please select a topic</div>}/>
+                <Route path={`${match.path}/1`} component={Topic1}/>
+                <Route path={`${match.path}/:id`} component={Topic}/>
+            </Switch>
         </div>
     );
 }
@@ -83,3 +97,7 @@ ReactDOM.render(
     </Router>,
     document.getElementById("root")
 );
+
+
+
+
