@@ -242,3 +242,5 @@ https://juejin.im/post/5a422b036fb9a045211ef789
 https://juejin.im/post/597ec55a51882556a234fcef
 
 https://wmaqingbo.github.io/blog/2017/09/15/ES6%E6%A8%A1%E5%9D%97-%E5%92%8C-CommonJS-%E7%9A%84%E5%8C%BA%E5%88%AB/
+
+https://juejin.im/post/5cb004da5188251b130c773e#heading-32
