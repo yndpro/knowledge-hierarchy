@@ -1,9 +1,6 @@
-import * as module2 from './module2'; 
+import module2 from './module2';
+import module3 from './module3';
 
 
-console.log(module2.counter);
-
-setTimeout(function(){
-    console.log(module2.counter);
-},500)
-
+console.log(module2.print() + module3.print());
+console.log('module1');

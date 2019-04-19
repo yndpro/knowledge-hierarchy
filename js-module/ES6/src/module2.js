@@ -1,7 +1,9 @@
-let counter = 0;
+const module2 = {
+    print : function(){
+        return 2
+    }
+};
 
-setTimeout(function(){
-    counter += 1
-},500)
+console.log("module2");
 
-export {counter}
+export default module2;
