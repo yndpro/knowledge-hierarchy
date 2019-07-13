@@ -4,12 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 /*const ExtractTextPlugin = require("extract-text-webpack-plugin");*/
 
-console.log("dir:" + path.resolve(__dirname,"src/react-router.js"));
-
-
 module.exports = {
     entry : {
-        router: "./src/react-router.js"
+        router: "./src/react-router.js",
+        redux : "./src/redux.js",
     },
 
     module: {
