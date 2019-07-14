@@ -13,14 +13,6 @@ module.exports = merge(common, {
         contentBase: path.resolve(__dirname,"dist"),
         compress: true,
         port: 9000,
-        proxy: [
-            {
-                 context: '/v2/movie/*',
-                 target: 'https://api.douban.com',
-                 changeOrigin: true,
-                 secure: false
-           }
-        ],
         //HMR  It allows all kinds of modules to be updated at runtime without the need for a full refresh.
         hot: true     //open Hot Module Replacement
     },
