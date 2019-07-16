@@ -5,7 +5,7 @@ export default class TodoItem extends React.Component{
         let className = this.props.completed ? {"text-decoration":"line-through"} : "";
         return(
             <li className={className}
-                onClick={() => this.props.changeTodoCompleted(this.props.id)}
+                onClick={() => this.props.onClick()}
             >
                 {this.props.text}
             </li>

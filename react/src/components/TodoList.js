@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoItem from 'TodoItem';
+import TodoItem from './TodoItem';
 
 export default class TodoList extends React.Component{
     render() {
@@ -13,7 +13,7 @@ export default class TodoList extends React.Component{
                                 id={item.id}
                                 text={item.text}
                                 completed={item.completed}
-                                changeTodoCompleted={this.props.changeTodoCompleted}
+                                onClick={() => this.props.changeTodoCompleted(item.id)}
                             />
                         )}
                     </ul>

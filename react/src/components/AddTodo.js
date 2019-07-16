@@ -1,7 +1,5 @@
 import React from 'react';
 
-let id = 0;
-
 export default class AddTodo extends React.Component{
     constructor(props){
         super(props);
@@ -15,17 +13,15 @@ export default class AddTodo extends React.Component{
         })
     }
     handleAddTodo(){
-        this.props.addTodo({
-            id : id++,
-            text : this.state.text,
-            completed : false
-        })
+        if(this.state.text){
+            this.props.addTodo(this.state.text)
+        }
     }
     render() {
         return(
             <div>
                 <input type="text" onChange={e => this.onValueChange(e)}/>
-                <button onClick={this.handleAddTodo}>AddTodo</button>
+                <button onClick={() => this.handleAddTodo()}>AddTodo</button>
             </div>
 
         )

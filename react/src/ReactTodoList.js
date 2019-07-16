@@ -1,58 +1,67 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AddTodo from 'components/AddTodo';
-import TodoList from 'components/TodoList';
-import FilterTodo from 'components/FilterTodo';
+import AddTodo from './components/AddTodo';
+import TodoList from './components/TodoList';
+import FilterTodo from './components/FilterTodo';
+
+let id = 0;
 
 class ReactTodoList extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            todo : [],
-            filter : "all"
+            todos   : [],
+            filter  : "all"
         }
     }
-    addTodo(newTodo){
+    addTodo(text){
+        let newTodo = {
+            id          : id++,
+            text        : text,
+            completed   : false
+        };
         this.setState({
-            todo : [...this.state.todo, newTodo]
+            todos : [...this.state.todos, newTodo]
         })
     }
-    onChangeFilter(filter){
+    changeFilter(filter){
         this.setState({
             filter : filter
         })
     }
     changeTodoCompleted(id){
-        let todo = this.state.todo.find(todo => todo.id === id);
-        todo.completed = !todo.completed;
+        console.log(id);
+        let todos = this.state.todos.map(todo => {
+            console.log(todo);
+            return todo.id === id ? todo : todo
+        });
         this.setState({
-            todo : this.state.todo
+            todos : todos
         })
     }
-    setVisibleTodos(){
-        let todos;
-        switch (this.state.filter) {
-            case 'completed' :
-                todos = this.state.todo.filter(todo => todo.completed === true);
-                break;
-            case 'noCompleted' :
-                todos = this.state.todo.filter(todo => todo.completed === false);
-                break;
-            case 'all' :
-                todos = this.state.todo;
-                break;
-            default :
-                todos = this.state.todo;
-        }
-        return todos;
+    getVisibleTodos(){
+        return this.state.todos.filter(todo => {
+            switch (this.state.filter) {
+                case 'completed' :
+                    return todo.completed === true;
+                case 'noCompleted' :
+                    return todo.completed === false;
+                case 'all' :
+                    return true;
+                default :
+                    return false;
+            }
+        });
     }
     render() {
-        let visibleTodos = this.setVisibleTodos();
         return(
             <div>
-                <AddTodo addTodo={this.addTodo}/>
-                <TodoList list={visibleTodos} changeTodoCompleted={changeTodoCompleted}/>
-                <FilterTodo onChangeFilter={this.onChangeFilter}/>
+                <AddTodo addTodo={text=>this.addTodo(text)}/>
+                <TodoList
+                    list={this.getVisibleTodos()}
+                    changeTodoCompleted={id=>this.changeTodoCompleted(id)}
+                />
+                <FilterTodo onChangeFilter={filter=>this.changeFilter(filter)}/>
             </div>
         )
     }
