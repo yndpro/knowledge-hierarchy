@@ -13,7 +13,7 @@ export default class TodoList extends React.Component{
                                 id={item.id}
                                 text={item.text}
                                 completed={item.completed}
-                                onClick={() => this.props.changeTodoCompleted(item.id)}
+                                onClick={() => {this.props.changeTodoCompleted(item.id)}}
                             />
                         )}
                     </ul>
