@@ -2,9 +2,9 @@ import React from 'react';
 
 export default class TodoItem extends React.Component{
     render() {
-        let className = this.props.completed ? {"text-decoration":"line-through"} : "";
+        let style = this.props.completed ? {textDecoration:"line-through"} : {};
         return(
-            <li className={className}
+            <li style={style}
                 onClick={() => this.props.onClick()}
             >
                 {this.props.text}
