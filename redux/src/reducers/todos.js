@@ -22,20 +22,6 @@ export default (todos = [],action) => {
                 :
                 todo);
 
-        case SET_FILTER :
-            return todos.filter(todo => {
-                switch (action.filter) {
-                    case 'completed' :
-                        return todo.completed === true;
-                    case 'noCompleted' :
-                        return todo.completed === false;
-                    case 'all' :
-                        return true;
-                    default :
-                        return false;
-                }
-            });
-
         default :
             return todos;
     }
