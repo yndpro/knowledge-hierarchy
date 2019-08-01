@@ -9,7 +9,7 @@ import {
 
 const store = createStore(reducer);
 
-const unsubscribe = store.subscribe(()=>{
+const unsubscribe = store.subscribe(() => {
     console.log(store.getState());
 });
 

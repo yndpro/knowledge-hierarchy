@@ -4,8 +4,6 @@ import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 import FilterTodo from './components/FilterTodo';
 
-import store from './store';
-
 let id = 0;
 
 class ReactTodoList extends React.Component{
