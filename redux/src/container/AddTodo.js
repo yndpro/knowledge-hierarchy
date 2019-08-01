@@ -1,4 +1,14 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {addTodo} from '../actions';
+
+const mapDispatchToProps = dispatch => ({
+    addTodo : text => dispatch(addTodo(text)),
+});
+
+export default connect({
+    mapDispatchToProps
+})(AddTodo)
 
 export default class AddTodo extends React.Component{
     constructor(props){
