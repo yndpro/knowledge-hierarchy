@@ -1,6 +1,6 @@
+import React from 'react';
 import {connect} from 'react-redux';
 import {toggleTodo} from '../actions';
-import React from 'react';
 import TodoItem from '../components/TodoItem';
 
 const getVisibleTodos = (todos,filter) => {
@@ -27,11 +27,6 @@ const mapDispatchToProps = dispatch => ({
     toggleTodo : id => dispatch(toggleTodo(id)),
 });
 
-export default connect({
-    mapStateToProps,
-    mapDispatchToProps
-})(TodoItems)
-
 class TodoItems extends React.Component{
     render() {
         return(
@@ -55,4 +50,9 @@ class TodoItems extends React.Component{
         )
     }
 }
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TodoItems)
 

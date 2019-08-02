@@ -2,15 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {addTodo} from '../actions';
 
+const mapStateToProps = state => ({
+    filter : state.filter
+});
+
 const mapDispatchToProps = dispatch => ({
     addTodo : text => dispatch(addTodo(text)),
 });
 
-export default connect({
-    mapDispatchToProps
-})(AddTodo)
-
-export default class AddTodo extends React.Component{
+class AddTodo extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -37,3 +37,8 @@ export default class AddTodo extends React.Component{
         )
     }
 }
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AddTodo)

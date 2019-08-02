@@ -1,6 +1,5 @@
 import {
     ADD_TODO,
-    SET_FILTER,
     TOGGLE_TODO
 } from '../actions/actions-type';
 

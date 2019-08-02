@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {setFilter} from '../actions';
 
+
 const mapStateToProps = state => ({
     filter : state.filter
 });
@@ -10,12 +11,7 @@ const mapDispatchToProps = dispatch => ({
     setFilter : filter => dispatch(setFilter(filter)),
 });
 
-export default connect({
-    mapStateToProps,
-    mapDispatchToProps
-})(FilterTodo)
-
-export default class FilterTodo extends React.Component{
+class FilterTodo extends React.Component{
     render() {
         return(
             <div>
@@ -26,3 +22,8 @@ export default class FilterTodo extends React.Component{
         )
     }
 }
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(FilterTodo)
