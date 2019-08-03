@@ -26,12 +26,25 @@ const fetchTodoFailure = error => ({
 export const fetchTodos = () => {
     return dispatch => {
         dispatch(fetchTodoRequest());
-        return fetch("http://localhost:5000/api/data.json").then(result => {
+        setTimeout(function () {
+            const result = {
+                    "status" : "1",
+                    "data" : [
+                    {
+                        "id" : "3424",
+                        "text" : "fdgdsdg",
+                        "completed" : false
+                    }
+                ]
+            };
+            dispatch(fetchTodoSuccess(result));
+        },1000)
+        /*return fetch('/data/getTodo').then(result => {
             alert("success!");
             dispatch(fetchTodoSuccess(result));
         },error => {
             dispatch(fetchTodoFailure(error));
-        })
+        })*/
     };
 };
 

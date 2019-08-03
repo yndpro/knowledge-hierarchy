@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './test/api';
 import {createStore,applyMiddleware} from "redux";
 import reducer from "./reducers";
 import thunkMiddleware from "redux-thunk";

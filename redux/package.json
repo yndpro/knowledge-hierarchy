@@ -10,10 +10,5 @@
     "server": "node server.js"
   },
   "author": "",
-  "license": "ISC",
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:5000"
-    }
-  }
+  "license": "ISC"
 }
