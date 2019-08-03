@@ -2,10 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {addTodo} from '../actions';
 
-const mapStateToProps = state => ({
-    filter : state.filter
-});
-
 const mapDispatchToProps = dispatch => ({
     addTodo : text => dispatch(addTodo(text)),
 });
@@ -39,6 +35,6 @@ class AddTodo extends React.Component{
 }
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(AddTodo)

@@ -11,7 +11,9 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "react-redux": "^7.1.0"
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:5000"
+    }
   }
 }

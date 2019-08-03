@@ -1,3 +1,6 @@
 export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
 export const SET_FILTER = "SET_FILTER";
+export const FETCH_TODO_REQUEST = "FETCH_TODO_REQUEST";
+export const FETCH_TODO_SUCCESS = "FETCH_TODO_SUCCESS";
+export const FETCH_TODO_FAILURE = "FETCH_TODO_FAILURE";
