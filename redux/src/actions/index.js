@@ -32,15 +32,15 @@ export const fetchTodos = () => {
                     "data" : [
                     {
                         "id" : "3424",
-                        "text" : "fdgdsdg",
+                        "text" : "learn redux1",
                         "completed" : false
                     }
                 ]
             };
             dispatch(fetchTodoSuccess(result));
         },1000)
-        /*return fetch('/data/getTodo').then(result => {
-            alert("success!");
+        /*return fetch('/ajaxGetRoleInfo').then(result => {
+            console.log("result",result);
             dispatch(fetchTodoSuccess(result));
         },error => {
             dispatch(fetchTodoFailure(error));

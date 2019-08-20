@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './test/api';
-import {createStore,applyMiddleware} from "redux";
+import {createStore,applyMiddleware,compose} from "redux";
 import reducer from "./reducers";
 import thunkMiddleware from "redux-thunk";
 import {Provider} from 'react-redux';
@@ -9,8 +9,11 @@ import AddTodo from './container/AddTodo';
 import TodoItems from './container/TodoItems';
 import FilterTodo from './container/FilterTodo';
 
-const store = createStore(reducer,applyMiddleware(
-    thunkMiddleware
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer,composeEnhancers(
+    applyMiddleware(
+        thunkMiddleware
+    )
 ));
 
 class ReactTodoList extends React.Component{

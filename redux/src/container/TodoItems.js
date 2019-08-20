@@ -30,7 +30,7 @@ const mapDispatchToProps = dispatch => ({
 
 class TodoItems extends React.Component{
     componentDidMount() {
-        this.props.fetchTodos()
+        this.props.fetchTodos();
     }
     render() {
         return(

@@ -1,6 +1,6 @@
 const Mock = require('mockjs');
 
-Mock.mock(/\/data\/getTodo/,{
+Mock.mock("/ajaxGetRoleInfo",{
     "status" : "1",
     "data" : [
         {
