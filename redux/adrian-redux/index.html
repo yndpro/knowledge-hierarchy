@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="num"></div>
+    <button id="plus">plus</button>
+    <button id="min">min</button>
+</body>
+<script type="text/javascript">
+
+
+    function createStore(reducer) {
+
+        let state;
+        let funs = [];
+
+        const getState = () => state;
+
+        const subscribe = fun => {
+            funs.push(fun);
+        };
+        const dispatch = action => {
+            state = reducer(state,action);
+            funs.forEach(fun => fun())
+        };
+
+        return {
+            getState,
+            subscribe,
+            dispatch
+        }
+    }
+
+    function reducer(state = {num : 0},action) {
+        switch (action.type) {
+            case "PLUS" :
+                return {
+                    num : state.num + 1
+                };
+            case "MIN" :
+                return {
+                    num : state.num - 1
+                };
+        }
+    }
+
+    const store = createStore(reducer);
+
+    store.subscribe(function () {
+        document.getElementById("num").innerHTML = store.getState().num;
+    });
+
+    document.getElementById("plus").addEventListener('click',function () {
+        store.dispatch({type:"PLUS"})
+    });
+    document.getElementById("min").addEventListener('click',function () {
+        store.dispatch({type:"MIN"})
+    });
+
+
+</script>
+</html>
