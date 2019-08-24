@@ -9,32 +9,12 @@
     <button id="plus">plus</button>
     <button id="min">min</button>
 </body>
-<script type="text/javascript">
+<script type="module">
 
-
-    function createStore(reducer) {
-
-        let state;
-        let funs = [];
-
-        const getState = () => state;
-
-        const subscribe = fun => {
-            funs.push(fun);
-        };
-        const dispatch = action => {
-            state = reducer(state,action);
-            funs.forEach(fun => fun())
-        };
-
-        return {
-            getState,
-            subscribe,
-            dispatch
-        }
-    }
+    import {createStore,combinedreducer} from './redux.js';
 
     function reducer(state = {num : 0},action) {
+        if(!action) return state;
         switch (action.type) {
             case "PLUS" :
                 return {
@@ -43,6 +23,10 @@
             case "MIN" :
                 return {
                     num : state.num - 1
+                };
+            default :
+                return {
+                    num : state.num
                 };
         }
     }
