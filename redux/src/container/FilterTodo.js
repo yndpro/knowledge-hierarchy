@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {setFilter} from '../actions';
-
+import {getFilter} from '../selector/main';
 
 const mapStateToProps = state => ({
-    filter : state.filter
+    filter : getFilter(state)
 });
 
 const mapDispatchToProps = dispatch => ({
