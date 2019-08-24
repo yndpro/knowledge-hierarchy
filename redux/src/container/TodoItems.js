@@ -11,7 +11,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     toggleTodo : id => dispatch(toggleTodo(id)),
-    fetchTodos  : () => dispatch(fetchTodos()),
+    fetchTodos  : () => {
+        let res = dispatch(fetchTodos());
+        console.log("res",res);
+    },
 });
 
 class TodoItems extends React.Component{
