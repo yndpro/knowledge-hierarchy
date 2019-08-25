@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => ({
     toggleTodo : id => dispatch(toggleTodo(id)),
     fetchTodos  : () => {
         let res = dispatch(fetchTodos());
-        console.log("res",res);
+        console.log("dispatch fetchtodo return",res);
     },
 });
 

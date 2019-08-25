@@ -25,7 +25,8 @@ const fetchTodoFailure = error => ({
 
 export const fetchTodos = () => {
     return dispatch => {
-        dispatch(fetchTodoRequest());
+        let res = dispatch(fetchTodoRequest());
+        console.log("dispatch fetchTodoRequest return",res);
         setTimeout(function () {
             const result = {
                     "status" : "1",

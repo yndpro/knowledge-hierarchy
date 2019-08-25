@@ -13,8 +13,8 @@ import FilterTodo from './container/FilterTodo';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer,composeEnhancers(
     applyMiddleware(
-        thunkMiddleware,
-        loggerMiddleware
+        loggerMiddleware,
+        thunkMiddleware
     )
 ));
 
