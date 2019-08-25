@@ -7,7 +7,8 @@ module.exports = {
     entry : {
         // router: "./src/ReactRouter.js",
         // redux : "./src/redux.js",
-        reactTodolist : "./src/ReactTodolist.js"
+        reactTodolist : "./src/ReactTodolist.js",
+        reactRouter : "./src/ReactTodolist.js"
     },
 
     module: {
