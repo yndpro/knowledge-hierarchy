@@ -6,7 +6,8 @@ class Todo {
     @observable todos = [];
     @observable filter = "all";
 
-    @action addTodo(text){
+    @action
+    addTodo(text){
         let newTodo = {
             id          : id++,
             text        : text,
@@ -15,9 +16,10 @@ class Todo {
         this.todos.push(newTodo);
     }
 
-    @computed get getVisibleTodos(){
+    @action
+    getVisibleTodos(){
         console.log("2:",this);
-        return this.todos.filter(todo => {
+        this.todos.filter(todo => {
             switch (this.filter) {
                 case 'completed' :
                     return todo.completed === true;
@@ -31,14 +33,11 @@ class Todo {
         });
     }
 
-    @action changeTodoCompleted(id){
+    @action
+    changeTodoCompleted(id){
         this.todos = this.todos.map(todo => {
             return todo.id === id ? {...todo,completed : !todo.completed} : todo
         });
-    }
-
-    @action load(){
-        this.getVisibleTodos();
     }
 
 
