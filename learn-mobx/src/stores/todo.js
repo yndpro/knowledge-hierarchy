@@ -1,4 +1,4 @@
-import {observable,action} from "mobx";
+import {observable,action,computed} from "mobx";
 
 let id = 0;
 
@@ -6,17 +6,16 @@ class Todo {
     @observable todos = [];
     @observable filter = "all";
 
-
     @action addTodo(text){
         let newTodo = {
             id          : id++,
             text        : text,
             completed   : false
         };
-        this.todos = [...this.todos, newTodo]
+        this.todos.push(newTodo);
     }
 
-    @action getVisibleTodos(){
+    @computed get getVisibleTodos(){
         console.log("2:",this);
         return this.todos.filter(todo => {
             switch (this.filter) {
@@ -36,6 +35,10 @@ class Todo {
         this.todos = this.todos.map(todo => {
             return todo.id === id ? {...todo,completed : !todo.completed} : todo
         });
+    }
+
+    @action load(){
+        this.getVisibleTodos();
     }
 
 
