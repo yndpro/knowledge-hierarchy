@@ -1,6 +1,12 @@
 import React from 'react';
+import {inject, observer} from "mobx-react";
 
-export default class AddTodo extends React.Component{
+@inject(stores => ({
+    addTodo : text => stores.todo.addTodo(text)
+}))
+
+@observer
+class AddTodo extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -27,3 +33,5 @@ export default class AddTodo extends React.Component{
         )
     }
 }
+
+export default AddTodo
