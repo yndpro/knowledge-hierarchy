@@ -5,10 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry : {
-        // router: "./src/ReactRouter.js",
-        // redux : "./src/redux.js",
-        reactTodolist : "./src/ReactTodolist.js",
-        // plusmin : "./src/plus-min.js",
+        index : "./src/ReactTodoList.js",
     },
 
     module: {

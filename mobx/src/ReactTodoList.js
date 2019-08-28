@@ -30,7 +30,6 @@ class ReactTodoList extends React.Component{
         })
     }
     changeTodoCompleted(id){
-        console.log(id);
         let todos = this.state.todos.map(todo => {
             console.log(todo);
             return todo.id === id ? {...todo,completed : !todo.completed} : todo
