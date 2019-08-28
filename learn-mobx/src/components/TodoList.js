@@ -3,18 +3,17 @@ import TodoItem from './TodoItem';
 import {inject, observer} from "mobx-react";
 
 @inject(stores => ({
-    getVisibleTodos : stores.todo.getVisibleTodos
+    list : stores.todo.visibleTodos
 }))
 
 @observer
-class TodoList extends React.Component{
+export default class TodoList extends React.Component{
     render() {
-        let list = this.props.getVisibleTodos();
         return(
             <div>
-                {list.length > 0 ?
+                {this.props.list.length > 0 ?
                     <ul>
-                        {list.map((item,key) =>
+                        {this.props.list.map((item,key) =>
                             <TodoItem
                                 key={key}
                                 id={item.id}
@@ -31,5 +30,3 @@ class TodoList extends React.Component{
         )
     }
 }
-
-export default TodoList

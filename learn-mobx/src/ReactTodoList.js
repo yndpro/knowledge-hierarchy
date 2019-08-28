@@ -6,8 +6,6 @@ import FilterTodo from './components/FilterTodo';
 import { inject, observer,Provider } from 'mobx-react';
 import stores from './stores';
 
-console.log(stores);
-
 @inject(stores => ({
     todos : stores.todo.todos,
     filter : stores.todo.filter
@@ -15,14 +13,6 @@ console.log(stores);
 
 @observer
 class ReactTodoList extends React.Component{
-
-    changeFilter(filter){
-        this.setState({
-            filter : filter
-        })
-    }
-
-
     render() {
         return(
             <div>
@@ -30,7 +20,7 @@ class ReactTodoList extends React.Component{
                 <TodoList
                     changeTodoCompleted={id=>this.changeTodoCompleted(id)}
                 />
-                <FilterTodo onChangeFilter={filter=>this.changeFilter(filter)}/>
+                <FilterTodo/>
             </div>
         )
     }

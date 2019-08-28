@@ -1,5 +1,11 @@
 import React from 'react';
+import {inject, observer} from "mobx-react";
 
+@inject(stores => ({
+    onChangeFilter : filter => stores.todo.changeFilter(filter)
+}))
+
+@observer
 export default class FilterTodo extends React.Component{
     render() {
         return(

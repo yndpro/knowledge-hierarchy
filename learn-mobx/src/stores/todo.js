@@ -3,23 +3,25 @@ import {observable,action,computed} from "mobx";
 let id = 0;
 
 class Todo {
+    id = id++;
+    @observable text        = text;
+    @observable completed   = false;
+}
+
+class TodoModel {
     @observable todos = [];
     @observable filter = "all";
 
-    @action
+    @action.bound
     addTodo(text){
-        let newTodo = {
-            id          : id++,
-            text        : text,
-            completed   : false
-        };
+        let newTodo = new Todo();
+        newTodo.text = text;
         this.todos.push(newTodo);
     }
 
-    @action
-    getVisibleTodos(){
-        console.log("2:",this);
-        this.todos.filter(todo => {
+    @computed
+    get visibleTodos(){
+        return this.todos.filter(todo => {
             switch (this.filter) {
                 case 'completed' :
                     return todo.completed === true;
@@ -33,15 +35,23 @@ class Todo {
         });
     }
 
-    @action
+    @action.bound
+    changeFilter(filter){
+        this.filter = filter;
+    }
+
+    @action.bound
     changeTodoCompleted(id){
         this.todos = this.todos.map(todo => {
-            return todo.id === id ? {...todo,completed : !todo.completed} : todo
+            return todo.id === id ?
+                {...todo,completed : !todo.completed}
+                :
+                todo
         });
     }
 
 
 }
 
-const todo = new Todo();
+const todo = new TodoModel();
 export default todo;
