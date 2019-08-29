@@ -1,4 +1,31 @@
-import {observable,action,computed} from "mobx";
+import {observable, action, computed, runInAction} from "mobx";
+
+const getData = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(function () {
+            resolve({
+                code : 100,
+                data : [
+                    {
+                        "id" : "3424",
+                        "text" : "1111111111",
+                        "completed" : false
+                    },
+                    {
+                        "id" : "4344",
+                        "text" : "222222",
+                        "completed" : false
+                    },
+                    {
+                        "id" : "434433",
+                        "text" : "3333333",
+                        "completed" : false
+                    }
+                ]
+            })
+        },3000)
+    });
+};
 
 let id = 0;
 
@@ -11,13 +38,7 @@ class Todo {
 class TodoModel {
     @observable todos = [];
     @observable filter = "all";
-
-    @action.bound
-    addTodo(text){
-        let newTodo = new Todo();
-        newTodo.text = text;
-        this.todos.push(newTodo);
-    }
+    @observable state = "pending";
 
     @computed
     get visibleTodos(){
@@ -33,6 +54,29 @@ class TodoModel {
                     return false;
             }
         });
+    }
+
+    @action.bound
+    async fetchTodo(){
+        this.state = "pending";
+        try{
+            const res = await getData();
+            runInAction(() => {
+                this.state = "done";
+                this.todos = res.data;
+            })
+        }catch (e) {
+            runInAction(() => {
+                this.state = "error";
+            })
+        }
+    }
+
+    @action.bound
+    addTodo(text){
+        let newTodo = new Todo();
+        newTodo.text = text;
+        this.todos.push(newTodo);
     }
 
     @action.bound

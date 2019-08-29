@@ -7,19 +7,19 @@ import { inject, observer,Provider } from 'mobx-react';
 import stores from './stores';
 
 @inject(stores => ({
-    todos : stores.todo.todos,
-    filter : stores.todo.filter
+    fetchTodo : stores.todo.fetchTodo
 }))
 
 @observer
 class ReactTodoList extends React.Component{
+    componentDidMount() {
+        this.props.fetchTodo();
+    }
     render() {
         return(
             <div>
                 <AddTodo/>
-                <TodoList
-                    changeTodoCompleted={id=>this.changeTodoCompleted(id)}
-                />
+                <TodoList/>
                 <FilterTodo/>
             </div>
         )
