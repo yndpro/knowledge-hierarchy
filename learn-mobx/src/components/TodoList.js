@@ -3,7 +3,8 @@ import TodoItem from './TodoItem';
 import {inject, observer} from "mobx-react";
 
 @inject(stores => ({
-    list : stores.todo.visibleTodos
+    list : stores.todo.visibleTodos,
+    changeTodoCompleted : id => stores.todo.changeTodoCompleted(id)
 }))
 
 @observer

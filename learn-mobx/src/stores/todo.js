@@ -4,7 +4,7 @@ let id = 0;
 
 class Todo {
     id = id++;
-    @observable text        = text;
+    @observable text        = "";
     @observable completed   = false;
 }
 
