@@ -38,7 +38,7 @@ class Todo {
 class TodoModel {
     @observable todos = [];
     @observable filter = "all";
-    @observable state = "pending";
+    @observable state = "done";
 
     @computed
     get visibleTodos(){
