@@ -81,7 +81,9 @@ class TodoModel {
 
     @action.bound
     changeFilter(filter){
+        console.log('1', this);
         this.filter = filter;
+        console.log('2', this);
     }
 
     @action.bound

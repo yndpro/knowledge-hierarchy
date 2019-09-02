@@ -3,7 +3,11 @@ import { observable,autorun} from 'mobx';
 
 const number = observable("test");
 
+console.log(number);
 autorun(() => {
-    console.log(value.get());
+    console.log(number);
 });
+
+number.set(333);
+
 
