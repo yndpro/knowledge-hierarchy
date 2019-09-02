@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry : {
-        index : "./src/ReactTodoList.js",
+        index : "./src/lesson1.js",
     },
 
     module: {
