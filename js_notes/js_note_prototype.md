@@ -117,3 +117,15 @@ console.log(Foo.club);    //undefined
 - 原型链的形成真正是靠__proto__ 而非prototype,当JS引擎执行对象的方法时，先查找对象本身是否存在该方法，如果不存在，会在原型链上查找，但不会查找自身的prototype。所以Foo.club为undefined，Foo，也是Function（）的一个实例，它只能往__proto__即（Function.prototype）上寻找。
 - 一个对象的__proto__记录着自己的原型链，决定了自身的数据类型，改变__proto__就等于改变对象的数据类型。
 - 在原型对象上定义方法和属性的目的是为了被子类继承和使用。
+
+
+
+
+Reference:
+
+https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=401599589&idx=1&sn=58573f891cc9774fd6c25af897bb67d7&scene=1&srcid=041321cZS94VMkZs8kxdRUVh&pass_ticket=qL%2F8LieECjo2gFYDtPVeW3Kvsm9EoRzcdcS0bpFDhzy4VPGkyy2tadRB7foV%2B1RN#rd
+
+https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=402751389&idx=2&sn=9abf648b5d94c1b1102a7f1aefb3885f&scene=0&pass_ticket=qL%2F8LieECjo2gFYDtPVeW3Kvsm9EoRzcdcS0bpFDhzy4VPGkyy2tadRB7foV%2B1RN#rd
+
+https://wangdoc.com/javascript/oop/prototype.html
+

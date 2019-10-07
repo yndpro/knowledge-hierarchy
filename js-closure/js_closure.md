@@ -257,3 +257,13 @@ object.getName(); //"My Object"
 reference:
 《javascript高级程序设计》
 http://www.jb51.net/article/24101.htm
+
+TODO:
+
+https://mp.weixin.qq.com/s/G4Yr0NChUCgSiVX8pWOTpw?
+
+http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html
+
+https://www.jb51.net/article/83524.htm
+
+https://www.cnblogs.com/wangfupeng1988/p/4001284.html
