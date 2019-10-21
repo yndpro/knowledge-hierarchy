@@ -77,6 +77,7 @@ class TodoModel {
         let newTodo = new Todo();
         newTodo.text = text;
         this.todos.push(newTodo);
+        console.log(this);
     }
 
     @action.bound
