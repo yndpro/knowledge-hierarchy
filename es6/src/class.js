@@ -8,6 +8,7 @@ class Parent {
         };
         this.name = name;
     }
+    prop1 = "parentProp1";
 
     //定义在原型上
     getName(){
@@ -21,6 +22,7 @@ class Parent {
         return "啦啦啦啦";
     }
 }
+Parent.prop2 = "parentProp2";
 
 class Child extends Parent{
     constructor(name,hobby){

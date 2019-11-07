@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry : {
-        index : "./src/decorator.js",
+        index : "./src/class.js",
     },
 
     module: {
