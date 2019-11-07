@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry : {
-        index : "./src/class.js",
+        index : "./src/let与const/index.js",
     },
 
     module: {

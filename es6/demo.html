@@ -6,7 +6,7 @@
 </head>
 <body class="">
 </body>
-<script>
+<script src="./src/let与const/index.js">
     /*this在对象方法中的嵌套函数缺陷*/
 
    /*var num = 8;
@@ -78,56 +78,56 @@
 
     /*类*/
 
-    class Animal {
+    // class Animal {
 
-        constructor (name,age){
-            this.name = name;
-            this.age = age;
-            //this.shout = this.shout.bind(this);
-        }
+    //     constructor (name,age){
+    //         this.name = name;
+    //         this.age = age;
+    //         //this.shout = this.shout.bind(this);
+    //     }
 
-        shout (){
-            console.log(this);
-            return `my name is ${this.name},i'm ${this.age}'years old`;
-        }
+    //     shout (){
+    //         console.log(this);
+    //         return `my name is ${this.name},i'm ${this.age}'years old`;
+    //     }
 
-        static foo(){
-            return  `this is a static method`;
-        }
-    }
+    //     static foo(){
+    //         return  `this is a static method`;
+    //     }
+    // }
 
-    class Dog extends Animal{
+    // class Dog extends Animal{
 
-        constructor(name,age,motto = "i'm a friend of humenkinds"){
-            super(name,age);
-            this.motto = motto;
-        }
+    //     constructor(name,age,motto = "i'm a friend of humenkinds"){
+    //         super(name,age);
+    //         this.motto = motto;
+    //     }
 
-        shout(){
-            console.log(`${super.shout()},and ${this.motto}`);
-        }
-    }
+    //     shout(){
+    //         console.log(`${super.shout()},and ${this.motto}`);
+    //     }
+    // }
 
-    const ani = new Animal('anni','23');
-    ani.shout();
-    const dog = new Dog('halo','18');
-    dog.shout();
+    // const ani = new Animal('anni','23');
+    // ani.shout();
+    // const dog = new Dog('halo','18');
+    // dog.shout();
 
     
-    var App = {
-        name : "dsfsdf",
-        age : "1",
-        output : function(){
-            console.log(this.name);
-        }
-    };
+    // var App = {
+    //     name : "dsfsdf",
+    //     age : "1",
+    //     output : function(){
+    //         console.log(this.name);
+    //     }
+    // };
 
-    function Fun1(){
-        this.name1 = 1;   //改变外部调用的
+    // function Fun1(){
+    //     this.name1 = 1;   //改变外部调用的
 
-        var name2 = 2;  //改变自身的  
-    }
-    Fun1();
+    //     var name2 = 2;  //改变自身的  
+    // }
+    // Fun1();
 
     //var fun1 = new Fun1;
     
